@@ -30,6 +30,27 @@ Prior to Stimulus, Basecamp used a smarttering of different styles and petterns 
 
 While it was easy to add new code like this, it wasn't comprehensive solution, and we had too many in-house styles and patterns coexisting. That mafe it hard to reuse code, and it made it hard for new developers to learn a consistent approach.
 
+### The three core concepts in Stimulus
+
+Stimulus rolls up the best of those patterns into a modest, small framework revolving around just three main concepts: Controllers, actions and targets.
+
+It's designed to read as a progressive enhancement when you look at the HTML it's addressing. Such that you can look at a single template and know which behavior is acting upon it. Here's an example:
+
+```
+<div data-controller="clipboard">
+  PIN: <input data-clipboard-target="source" type="text" value="1234" readonly>
+  <button data-action="clipboard#copy">Copy to Clipboard</button>
+</div>
+```
+
+You can read that and have a pretty good idea pf wjat's going on. Event without knowing anythong about Stimulus or looking that the controller code itself. It's almost like pseudocode. That's very different from reading a slice of HTML that has an external Javascript file apply event handlers to it. It also maintains the separation of concerns that has been lost in many contemporary JavaScript frameworks.
+
+As you can see, Stimulus doesn't bother itself with creating the HTML. Rather, it attaches itself to an existing HTML document. The HTML is, in the majority of cases, rendered on the server either on the page load (first hot or via Turbo) or via an Ajax request that changes the DOM.
+
+Stimulus is concerned with naipulating this existing HTML document. Sometimes that means adding a CSS class hides an element or animated it or highlights it. Sometimes it means rearranging elements in groupings. Sometimes it means manipulating the content of an element, like we transform UTC times that can be cached into local times that can be displayed.
+
+There are cases where you'd want Stimulus to create new DOM elements, and you's definitely free to do that. We might even add some sugar to make it easier in the future.But it's the minority use case. The focus is on manipulating, not creating elements.
+
 ## <u>1. Introduction</u>
 
 ## <u>2. Hello, Stimulus</u>
