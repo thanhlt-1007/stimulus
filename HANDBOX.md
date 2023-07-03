@@ -51,6 +51,16 @@ Stimulus is concerned with naipulating this existing HTML document. Sometimes th
 
 There are cases where you'd want Stimulus to create new DOM elements, and you's definitely free to do that. We might even add some sugar to make it easier in the future.But it's the minority use case. The focus is on manipulating, not creating elements.
 
+### How Stimulus differs from mainstream JavaScript frameworks
+
+This makes Stimulus very different from the majority of contemporary JavaScript frameworks. Almost all focused on turning JSON into DOM elements via template language of some sort. Many use these frameworks to birth an empty page, which is then filled exclusively with elements created through this JSON-to-template rendering.
+
+Stimulus also differs on the question of state. Most frameworks have ways of maintaining state within JavaScript objects, and then render HTML based on that state. Stimulus is the exact opposite. State is stored in the HTML, so that controllers can be discarded between page changes, but still reinitialize as they were when the cached HTML appears again.
+
+It really is a remarkably different paradigm. One that I'm sure many veterent JavaScript developers who've been used to work with ontemporary frameworks will scoff at. And hey, scoff away. It you're happy with the complexity and effort it takes to maintain an application within the saelstrom of, say React + Redux, then Turbo + Stimulus will not appeal to you.
+
+If, on the other hand, you have nagging sense that what you're working on does not warrant the intense complexity and application separation such contemporary techniques imply, then you're likely to find refuge in our approach.
+
 ## <u>1. Introduction</u>
 
 ## <u>2. Hello, Stimulus</u>
