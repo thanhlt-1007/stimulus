@@ -63,6 +63,26 @@ If, on the other hand, you have nagging sense that what you're working on does n
 
 ## <u>1. Introduction</u>
 
+### a. About Stimulus
+
+Stimulus is a JavaScript framework with modest ambitions. Unlike other front-end frameworks, Stimulus is designed to enhance static or server-rendered HTML - the "HTML you already have" - by connnecting JavaScript objects to elements on the page using simple annotations.
+
+These JavaScript objects are called controllers, and Stimulus continuosly monitors the page wwaiting for HTML `data-controller` attributes to appear. For new each attribute, Stimulus looks at the attribute's value to find a corresponding controller class, create a new instance of that class, and connects it to the element.
+
+You can think of it this way: jusst like the `class` attribute í a bridge connecting HTML to CSS, Stimulus's `data-controller` attribute is a bridge connecting HTML to JavaScript.
+
+Aside from controllers, the three other major Stimulus concepts are
+
+- `actions`, which connect controller methods to DOM events using `data-action` attributes
+
+- `targets`, which locate elements of significance without a controller.
+
+- `values`, which read, write, and observe data attributes on the controller's element
+
+Stimulus's use of data attributes helps seperate content from behavior in the same way CSS seperates content from presentation. Futher, Stimulus's conventions naturally encourage you to group related code by name.
+
+In turn, Stimulus helps you build small, reusable controllers, giving you just enough structure to keep your code from devolving into "JavaScript soup"
+
 ## <u>2. Hello, Stimulus</u>
 
 ## <u>3. Building Something Real</u>
