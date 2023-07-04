@@ -83,6 +83,24 @@ Stimulus's use of data attributes helps seperate content from behavior in the sa
 
 In turn, Stimulus helps you build small, reusable controllers, giving you just enough structure to keep your code from devolving into "JavaScript soup"
 
+### b. About This Book
+
+This handbox will guide you through Stimulus's core concepts by demonstrating how to write several fully functional controllers. Each chapter builds on the one before it; from start to finish, you'll learn how to:
+
+- print a greeting addressed to the name in a text field.
+
+- copy text from a text field to the system clipboard when a button is clicked.
+
+- navigate through a slide show with multiple slides
+
+- fetch HTML from the server into an element on the page automatically
+
+- set up Stimulus in your own application
+
+Once you've completed exercise here, you may find the [reference documentation](https://stimulus.hotwired.dev/reference/controllers) helpful for understading technical details about the Stimulus API.
+
+Let's get started!
+
 ## <u>2. Hello, Stimulus</u>
 
 ## <u>3. Building Something Real</u>
