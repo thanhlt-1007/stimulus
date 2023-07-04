@@ -122,6 +122,21 @@ Then visit `http://localhost:9000` in your browser.
 
 Note that the `stimulus-starter` project use the [Yarn package manager](https://yarnpkg.com/) for dependency management, so make sure you have that installed first.
 
+### b. It All Starts With HTML
+
+Let's begin with a simple exercise using a text field and a button. When you click the button, we;ll display the value of the text field in the console.
+
+Every Stimulus project starts with HTML. Open `public/index.html` and add the following markup jusst after the opening `<body>` tag:
+
+```
+<div>
+  <input type="text">
+  <button>Greet</button>
+</div>
+```
+
+Reload the page in your browser and you should sê the text field and button.
+
 ## <u>3. Building Something Real</u>
 
 ## <u>4. Designing For Resilience</u>
