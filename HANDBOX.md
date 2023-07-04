@@ -85,6 +85,25 @@ In turn, Stimulus helps you build small, reusable controllers, giving you just e
 
 ## <u>2. Hello, Stimulus</u>
 
+### a. Prerequisites
+
+To follow along, you'll need a running a copy of the [stimus-starter](https://github.com/hotwired/stimulus-starter) project, which is a preconfigured blank slate for exploring Stimulus.
+
+We recommended remixing stimulus-starter on Glitch so you can work entirely in your browser without installing anything
+
+Or, if you'd prefer to work from the comfort of your own text editor, you'll need to clone and set up `stimulus-starter`
+
+```
+git clone https://github.com/hotwired/stimulus-starter.git
+cd stimulus-starter
+yarn install
+yarn start
+```
+
+Then visit `http://localhost:9000` in your browser.
+
+Note that the `stimulus-starter` project use the [Yarn package manager](https://yarnpkg.com/) for dependency management, so make sure you have that installed first.
+
 ## <u>3. Building Something Real</u>
 
 ## <u>4. Designing For Resilience</u>
