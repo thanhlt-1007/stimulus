@@ -137,7 +137,23 @@ Every Stimulus project starts with HTML. Open `public/index.html` and add the fo
 
 Reload the page in your browser and you should sê the text field and button.
 
+### c. Controllers Bring HTML to Life
+
+At its core, Stimulus's purpose is tp automatically connect DOM elements to JavaScript objects. Those objects are called controllers.
+
+Let's create our first controller by extending the framework's built-in `Controller` class. Create a new file named `hello_controller.js` in the `src/controllers/` folder. Then place the following code inside:
+
+```
+// src/controllers/hello_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controllers {
+}
+```
+
 ## <u>3. Building Something Real</u>
+
+
 
 ## <u>4. Designing For Resilience</u>
 
