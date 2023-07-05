@@ -211,6 +211,18 @@ To connect our action method to the button's `click` event, open `public/index.h
 </div>
 ```
 
+<u>Action Descriptors Explained</u>
+
+The `data-action` value `click->hello#greet` is called an action descriptor. Thif particular descriptor says:
+
+- `click` is the event name
+
+- `hello` is the controller identifier
+
+- `greet` is the name of the method to invoke.
+
+Load the page in your browser and open the developers console. You should see the log message appear when you click the "Greet" button.
+
 ## <u>3. Building Something Real</u>
 
 ## <u>4. Designing For Resilience</u>
