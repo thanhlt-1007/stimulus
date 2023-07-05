@@ -151,6 +151,18 @@ export default class extends Controllers {
 }
 ```
 
+### d. Identifiers Link Controllers With the DOM
+
+Next, wwe ned to tell Stimulus how this controller should be connected to our HTML. We do this by placing an identifier in the `data-controller` attribute on our `<div>`:
+```
+<div data-controller="hello">
+  <input type="text">
+  <button>Greet</button>
+</div>
+```
+
+Identifiers serve as the link between elements and controllers. In this case, the identifier hello tells
+
 ## <u>3. Building Something Real</u>
 
 
