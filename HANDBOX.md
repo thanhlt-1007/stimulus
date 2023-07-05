@@ -161,11 +161,30 @@ Next, wwe ned to tell Stimulus how this controller should be connected to our HT
 </div>
 ```
 
-Identifiers serve as the link between elements and controllers. In this case, the identifier hello tells
+Identifiers serve as the link between elements and controllers. In this case, the identifier `hello` tells Stimulus to create an instance of the controller class in `hello_controller.js`. You can learn more about how automatic controller loading wworks in the [Installation Guide](https://stimulus.hotwired.dev/handbook/installing).
+
+### e. Is This Thing On?
+
+Reload the page in your browser and you'll see that nothing has changed. How to we know whether our controller is working or not?
+
+One way is to put a log statement in the `connect()` method, which Stimulus calls each time a controler is connected to the document.
+
+Implement the `connect()` method in `hello_controller.js` as follows:
+
+```
+// src/controllers/hello_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  connect() {
+    console.log("Hello, Stimulus!", this.element)
+  }
+}
+```
+
+Reload the page again and open developer console. You should see `Hello, Stimulus!` followed by a representation if our `<div>`.
 
 ## <u>3. Building Something Real</u>
-
-
 
 ## <u>4. Designing For Resilience</u>
 
