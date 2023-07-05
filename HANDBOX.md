@@ -184,6 +184,33 @@ export default class extends Controller {
 
 Reload the page again and open developer console. You should see `Hello, Stimulus!` followed by a representation if our `<div>`.
 
+### f. Actions Respond to DOM Events
+
+Now let's see how to change the code so our log message appears when we click the "Greet" button instead.
+
+Start by renaming `connect()` to `greet()`
+
+```
+// src/controllers/hello_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  greet() {
+    console.log("Hello, Stimulus!", this.element)
+  }
+}
+```
+
+We want to call the `greet()` method when the button's `click` event is triggered. In Stimulus, Controller methods which handle events are called action methods.
+
+To connect our action method to the button's `click` event, open `public/index.html` and add a `data-action` attribute to the button:
+```
+<div data-controller="hello">
+  <input type="text">
+  <button data-action="click->hello#greet">Greet</button>
+</div>
+```
+
 ## <u>3. Building Something Real</u>
 
 ## <u>4. Designing For Resilience</u>
