@@ -36,7 +36,7 @@ Stimulus rolls up the best of those patterns into a modest, small framework revo
 
 It's designed to read as a progressive enhancement when you look at the HTML it's addressing. Such that you can look at a single template and know which behavior is acting upon it. Here's an example:
 
-```
+```HTML
 <div data-controller="clipboard">
   PIN: <input data-clipboard-target="source" type="text" value="1234" readonly>
   <button data-action="clipboard#copy">Copy to Clipboard</button>
@@ -111,7 +111,7 @@ We recommended remixing stimulus-starter on Glitch so you can work entirely in y
 
 Or, if you'd prefer to work from the comfort of your own text editor, you'll need to clone and set up `stimulus-starter`
 
-```
+```bash
 git clone https://github.com/hotwired/stimulus-starter.git
 cd stimulus-starter
 yarn install
@@ -128,7 +128,7 @@ Let's begin with a simple exercise using a text field and a button. When you cli
 
 Every Stimulus project starts with HTML. Open `public/index.html` and add the following markup jusst after the opening `<body>` tag:
 
-```
+```HTML
 <div>
   <input type="text">
   <button>Greet</button>
@@ -143,7 +143,7 @@ At its core, Stimulus's purpose is tp automatically connect DOM elements to Java
 
 Let's create our first controller by extending the framework's built-in `Controller` class. Create a new file named `hello_controller.js` in the `src/controllers/` folder. Then place the following code inside:
 
-```
+```js
 // src/controllers/hello_controller.js
 import { Controller } from "@hotwired/stimulus"
 
@@ -154,7 +154,8 @@ export default class extends Controllers {
 ### d. Identifiers Link Controllers With the DOM
 
 Next, wwe ned to tell Stimulus how this controller should be connected to our HTML. We do this by placing an identifier in the `data-controller` attribute on our `<div>`:
-```
+
+```HTML
 <div data-controller="hello">
   <input type="text">
   <button>Greet</button>
@@ -171,7 +172,7 @@ One way is to put a log statement in the `connect()` method, which Stimulus call
 
 Implement the `connect()` method in `hello_controller.js` as follows:
 
-```
+```js
 // src/controllers/hello_controller.js
 import { Controller } from "@hotwired/stimulus"
 
@@ -190,7 +191,7 @@ Now let's see how to change the code so our log message appears when we click th
 
 Start by renaming `connect()` to `greet()`
 
-```
+```js
 // src/controllers/hello_controller.js
 import { Controller } from "@hotwired/stimulus"
 
@@ -204,7 +205,8 @@ export default class extends Controller {
 We want to call the `greet()` method when the button's `click` event is triggered. In Stimulus, Controller methods which handle events are called action methods.
 
 To connect our action method to the button's `click` event, open `public/index.html` and add a `data-action` attribute to the button:
-```
+
+```js
 <div data-controller="hello">
   <input type="text">
   <button data-action="click->hello#greet">Greet</button>
@@ -231,11 +233,55 @@ In order to do that, first we need a reference to the input element inside our c
 
 Stimulus let ú mark important elements as targets so we can easily reference them in the controller through corresponding properties. Open `public/index.html` and add a `data-hello-target` attribute to the input element:
 
-```
+```HTML
 <div data-controller="hello">
   <input data-hello-target="name" type="text">
   <button data-action="click->hello#greet" >Greet</button>
 </div>
+```
+
+Next, we'll create a property for the target by adding `name` to our controler's list of target definitions. Stimulus will automatically create a `this.nameTarget` property which returns the first matching target element. We can use this property to read the element's `value` and build our greeting string.
+
+Let's try it out. Open `hello_controller.js` and update it like so:
+
+```js
+// src/controllers/hello_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controllers {
+  static targets = ["name]
+
+  greet() {
+    const element = this.nameTarget
+    const name = element.value
+    console.log(`Hello, ${name}!`)
+  }
+}
+```
+
+Then reload the page in your browser and open the developer console. Enter your name in the input field and click the "Greet" button. Hello, wworld!
+
+### h. Controllers Simplify Refactoring
+
+We've seen that Stimulus controllers are instances of JavaScript classes whose methods can act as event handlers.
+
+That means we have an arsenal of standard refactoring techniques at our disposal. For example, we can clean up our `greet()` method by actracting a `name` getter:
+
+```js
+// src/controllers/hello_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controllers {
+  static targets = ["name"]
+
+  greet() {
+    console.log(`Hello, ${this.name}!`)
+  }
+
+  get name() {
+    return this.nameTarget.value
+  }
+}
 ```
 
 ## <u>3. Building Something Real</u>
