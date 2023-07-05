@@ -161,7 +161,11 @@ Next, wwe ned to tell Stimulus how this controller should be connected to our HT
 </div>
 ```
 
-Identifiers serve as the link between elements and controllers. In this case, the identifier hello tells
+Identifiers serve as the link between elements and controllers. In this case, the identifier `hello` tells Stimulus to create an instance of the controller class in `hello_controller.js`. You can learn more about how automatic controller loading wworks in the [Installation Guide](https://stimulus.hotwired.dev/handbook/installing).
+
+### e. Is This Thing On?
+
+
 
 ## <u>3. Building Something Real</u>
 
