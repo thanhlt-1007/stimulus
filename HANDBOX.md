@@ -223,6 +223,21 @@ The `data-action` value `click->hello#greet` is called an action descriptor. Thi
 
 Load the page in your browser and open the developers console. You should see the log message appear when you click the "Greet" button.
 
+### g. Targets Map Important Elements To Controller Properties
+
+We'll finish the exercise by changing our action to say hello to whatever name we've types in the text field.
+
+In order to do that, first we need a reference to the input element inside our controller. Then we can read the `value` property to get its contents.
+
+Stimulus let ú mark important elements as targets so we can easily reference them in the controller through corresponding properties. Open `public/index.html` and add a `data-hello-target` attribute to the input element:
+
+```
+<div data-controller="hello">
+  <input data-hello-target="name" type="text">
+  <button data-action="click->hello#greet" >Greet</button>
+</div>
+```
+
 ## <u>3. Building Something Real</u>
 
 ## <u>4. Designing For Resilience</u>
