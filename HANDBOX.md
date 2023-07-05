@@ -284,6 +284,12 @@ export default class extends Controllers {
 }
 ```
 
+### i. Wrap-Up and Next Steps
+
+Congratulations-you're just written your first Stimulus controller!
+
+We've covered the framework;s most important concepts: controllers, actions and targets. In the next chapter, we'll see how to put those together to build a real-life controller taken right from Basecamp.
+
 ## <u>3. Building Something Real</u>
 
 ## <u>4. Designing For Resilience</u>
