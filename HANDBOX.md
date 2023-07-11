@@ -317,6 +317,27 @@ Open `public/index.html` and replace the contents of `<body>` with a rough sketc
 </div>
 ```
 
+### c. Setting Up the Controller
+
+Next, create `src/controllers/clipboard_controller.js` and add an empty method `copy()`:
+
+```JS
+// src/controllers/clipboard_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  copy() {
+  }
+}
+
+```
+
+Then add `data-controller="clipboard"` to the outer `<div>`. Any time this attributes appears on an element, Stimulus will connect an instance of our controller:
+
+```HTML
+<div data-controller="clipboard">
+```
+
 ## <u>4. Designing For Resilience</u>
 
 ## <u>5. Managing State</u>
