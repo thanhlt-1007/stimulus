@@ -292,6 +292,18 @@ We've covered the framework;s most important concepts: controllers, actions and 
 
 ## <u>3. Building Something Real</u>
 
+We've implemented out first controller and learned how Stimulus connects HTML to JavaScript. Now let's take a look at something we can use in a real application by recreating a controller from Basecamp.
+
+### a. Wrapping the DOM Clipboard API
+
+Scattered throughout Basecamp's IO are buttons like these:
+
+![](https://stimulus.hotwired.dev/assets/bc3-clipboard-ui.png)
+
+When you click one of these bittons, Basecamp copies a bit of text, such as a URL or an email address, to your clipboard.
+
+The web platform has an [an API for accessing the system clipboard](https://www.w3.org/TR/clipboard-apis/), but there's no HTML element that does what we need. To implement a "Copy to clipboard" button, we must use JavaScript.
+
 ## <u>4. Designing For Resilience</u>
 
 ## <u>5. Managing State</u>
