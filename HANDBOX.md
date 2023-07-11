@@ -304,6 +304,19 @@ When you click one of these bittons, Basecamp copies a bit of text, such as a UR
 
 The web platform has an [an API for accessing the system clipboard](https://www.w3.org/TR/clipboard-apis/), but there's no HTML element that does what we need. To implement a "Copy to clipboard" button, we must use JavaScript.
 
+### b. Implementing a Copy button
+
+Let's say we have an app which allows us to grant someone else access by generating a PIN for them. It would be convenient if we could display that generated PIN alongside a button to copy it to the clipboard for easy sharing
+
+Open `public/index.html` and replace the contents of `<body>` with a rough sketch of the button:
+
+```HTML
+<div>
+  PIN: <input type="text" value="1234" readonly>
+  <button>Copy to Clipboard</button>
+</div>
+```
+
 ## <u>4. Designing For Resilience</u>
 
 ## <u>5. Managing State</u>
