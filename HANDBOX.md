@@ -422,6 +422,34 @@ Let's go ahead and add another PIN to the page. Copy and paste the `<div>` so th
 
 Reload the page and confirm that both buttons work.
 
+### g. Actions and Targets Can Go on ANy Kind of Element
+
+Now let's add one more PIN field. This time we'll use a Copy link instead of a button:
+
+```HTML
+<div data-controller="clipboard">
+  PIN: <input data-clipboard-target="source" type="text" value="3737" readonly>
+  <a href="#" data-action="clipboard#copy">Copy to Clipboard</a>
+</div>
+```
+
+Stimulus let us use any kind of element we want as long as it hash an appropriate `data-action` attribute.
+
+Note that in this case, clicking the link will also cause the browser to follow the link's `href`. We can cancel this default behavior by calling `event.preventDefault()` in the action:
+
+```JS
+copy() {
+  event.preventDefault();
+  navigator.clipboard.writeText(this.sourceTarget.value)
+}
+```
+
+Similar, our `source` target neef not be an `<input type="text">`. The controller only expects it be have a `value` property and a `select()` method. That means we can use a `<textarea>` instead:
+
+```HTML
+PIN: <textarea data-clipboard-target="source" readonly>3737</textarea>
+```
+
 ## <u>4. Designing For Resilience</u>
 
 ## <u>5. Managing State</u>
