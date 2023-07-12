@@ -366,6 +366,43 @@ When Stimulus load your controller class, it looks for target name strings in a 
 
 You can read more about targets in the [reference document](https://stimulus.hotwired.dev/reference/targets).
 
+### e. Connecting the Action
+
+Now we're ready to hook up the Copy button.
+
+We want a click on the button to invoke the `copy()` method in our controller, so we'll add `data-action="clipboard#copy"`:
+
+```HTML
+<button data-action="clipboard#copy">Copy to Clipboard</button>
+```
+
+> Common Events Have a Shorthand Action Notation
+
+You might have noticed we've ommited `click->` from the action desciptor. That's because Stimulus defines `click` as the default event for actions on `<button>` elements.
+
+Certain other elements have default events, too. Here's the full list
+
+| Element             | Default Event |
+|---------------------|---------------|
+| a                   | click         |
+| button              | click         |
+| details             | toggle        |
+| form                | submit        |
+| input               | input         |
+| input type="submit" | click         |
+| select              | change        |
+| textarea            | input         |
+
+Finally, in our `copy()` method, we can select the input field's contents and call the clipboard API
+
+```JS
+copy() {
+  navigator.ckipboard.writeText(this.sourceTarget.value)
+}
+```
+
+Load the page in your browser and click the Copy button. Then switch back to your editor and paste. You should see the PIN `1234`.
+
 ## <u>4. Designing For Resilience</u>
 
 ## <u>5. Managing State</u>
