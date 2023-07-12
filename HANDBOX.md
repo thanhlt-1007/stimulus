@@ -450,6 +450,12 @@ Similar, our `source` target neef not be an `<input type="text">`. The controlle
 PIN: <textarea data-clipboard-target="source" readonly>3737</textarea>
 ```
 
+### h. Wrap-Up and Next Steps
+
+In this chapter we looked at a real-life example of wrapping a browser API in a Stimulus controller. We saw how multiple instances of the controller can appear on the page at once, and we explored how actions and targets keep your HTML and JavaScript loosely coupled.
+
+Now let's see how small changes to the controller's design can lead us to a more robust implementation.
+
 ## <u>4. Designing For Resilience</u>
 
 ## <u>5. Managing State</u>
