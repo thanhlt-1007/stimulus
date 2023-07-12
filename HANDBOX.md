@@ -332,11 +332,39 @@ export default class extends Controller {
 
 ```
 
-Then add `data-controller="clipboard"` to the outer `<div>`. Any time this attributes appears on an element, Stimulus will connect an instance of our controller:
+Then add `data-controller="clipboard"` to the outer `<div>`. Any time this attribute appears on an element, Stimulus will connect an instance of our controller:
 
 ```HTML
 <div data-controller="clipboard">
 ```
+
+### d. Defining the Target
+
+We;ll neef a reference to the text field so we can select its content before invoking the clipboard API. Add `data-clipboard-target="source"` to the text field:
+
+```HTML
+PIN: <input data-clipboard-target="source" type="text" value="1234" readonly>
+```
+
+Now add a target definition to the controllers so we can access the text field element as `this.sourceTarget`:
+
+```JS
+export default class extends Controller {
+  static targets = ["source"]
+}
+```
+
+> What's With That `static targets` Line ?
+
+When Stimulus load your controller class, it looks for target name strings in a static array called `targets`. For each target name in the array, Stimulus adds three new properties to your controller. Here, our `"source"` target name becomes the following properties.
+
+- `this.sourceTarget` evaluates to the first `source` target in your controller's scope. If there is no `source` target, accessing the property throws an error.
+
+- `this.sourceTargets` evaluates to an array of all `source` targets in the controller's scope.
+
+- `this.hasSourceTarget` evaluates to `true` if there is a `source` target or `false` if not.
+
+You can read more about targets in the [reference document](https://stimulus.hotwired.dev/reference/targets).
 
 ## <u>4. Designing For Resilience</u>
 
