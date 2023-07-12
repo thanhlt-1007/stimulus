@@ -403,6 +403,25 @@ copy() {
 
 Load the page in your browser and click the Copy button. Then switch back to your editor and paste. You should see the PIN `1234`.
 
+### f. Stimulus Controller are Reusable
+
+So far we've seen what happens when there's one instance of a controller on the page at a time.
+
+It's not unusual to have multiple of a controller one the page simultaneously. For example. we might want to display a list of PINs, each with its own Copy button.
+
+Our controller is reusable any time we want to provide a way to copy ab bit of text to the clipboard, all we need is markup on the page with the right annotations.
+
+Let's go ahead and add another PIN to the page. Copy and paste the `<div>` so there are two identical PIN fields, then change the `value` attribute of the second:
+
+```HTML
+<div data-controller="clipboard">
+  PIN: <input data-clipboard-target="sourec" type="text" value="3737" readonly>
+  <button data-action="clipboard#copy">Copy to Clipboard</button>
+</div>
+```
+
+Reload the page and confirm that both buttons work.
+
 ## <u>4. Designing For Resilience</u>
 
 ## <u>5. Managing State</u>
