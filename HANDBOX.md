@@ -143,7 +143,7 @@ At its core, Stimulus's purpose is tp automatically connect DOM elements to Java
 
 Let's create our first controller by extending the framework's built-in `Controller` class. Create a new file named `hello_controller.js` in the `src/controllers/` folder. Then place the following code inside:
 
-```js
+```JS
 // src/controllers/hello_controller.js
 import { Controller } from "@hotwired/stimulus"
 
@@ -172,7 +172,7 @@ One way is to put a log statement in the `connect()` method, which Stimulus call
 
 Implement the `connect()` method in `hello_controller.js` as follows:
 
-```js
+```JS
 // src/controllers/hello_controller.js
 import { Controller } from "@hotwired/stimulus"
 
@@ -191,7 +191,7 @@ Now let's see how to change the code so our log message appears when we click th
 
 Start by renaming `connect()` to `greet()`
 
-```js
+```JS
 // src/controllers/hello_controller.js
 import { Controller } from "@hotwired/stimulus"
 
@@ -206,7 +206,7 @@ We want to call the `greet()` method when the button's `click` event is triggere
 
 To connect our action method to the button's `click` event, open `public/index.html` and add a `data-action` attribute to the button:
 
-```js
+```JS
 <div data-controller="hello">
   <input type="text">
   <button data-action="click->hello#greet">Greet</button>
@@ -244,7 +244,7 @@ Next, we'll create a property for the target by adding `name` to our controler's
 
 Let's try it out. Open `hello_controller.js` and update it like so:
 
-```js
+```JS
 // src/controllers/hello_controller.js
 import { Controller } from "@hotwired/stimulus"
 
@@ -267,7 +267,7 @@ We've seen that Stimulus controllers are instances of JavaScript classes whose m
 
 That means we have an arsenal of standard refactoring techniques at our disposal. For example, we can clean up our `greet()` method by actracting a `name` getter:
 
-```js
+```JS
 // src/controllers/hello_controller.js
 import { Controller } from "@hotwired/stimulus"
 
@@ -531,6 +531,78 @@ Next, we'll learn about how Stimulus controllers manage state.
 Most contemporary frameworks encourage you to keep state in JavaScript at all time. They treat the DOM as a write-only renderin target, reconciled by client-side templates consuming JSOn from the server.
 
 Stimulus takes a different approach. A stimulus application's state lives as attribute in the DOM; controller themselves are largely stateless. This approach makes it possible to work with HTML from anywhere - the initial document, and Ajax request, a Turbo visit, or event another JavaScript library - and have associated controller spring to life automatically without any explicit initialization step.
+
+### a. Building a Slideshow
+
+In the last chapter, we learned how a Stimulus controller can maintain simple state in the document by adding c class name to an element. But what we do when we need to store a value, not just a simple flag?
+
+We'll investigate this question by building a slideshow controller which keeps its currently selected slide index in an attribute.
+
+As usual, we'll begin with HTML
+
+```HTML
+<div data-controller="slideshow">
+  <button data-action="slideshow#previous">←</button>
+  <button data-action="slideshow#next">→</button>
+
+  <div data-slideshow-target="slide">🐵</div>
+  <div data-slideshow-target="slide">🙈</div>
+  <div data-slideshow-target="slide">🙉</div>
+  <div data-slideshow-target="slide">🙊</div>
+</div>
+```
+
+Each `slide` target represents a single slide in the slideshow. Our controller will be responsible for making sure only one slide is visible at a time.
+
+Let's draft our controller. Create a new file, `src/controllers/slideshow_controller.js`, as follows:
+
+```JS
+// src/controllers/slideshow_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  static targets = ["slide"]
+
+  initialize() {
+    this.index = 0
+    this.showCurrentSlide()
+  }
+
+  next() {
+    this.index++
+    this.showCurrentSlide()
+  }
+
+  previous() {
+    this.index--
+    this.showCurrentSlide()
+  }
+
+  showCurrentSlide() {
+    this.slideTargets.forEach((element, index) => {
+      element.hidden = index !== this.index
+    })
+  }
+}
+```
+
+Our controller defines a method, `showCurrentSlide()`, which loops over each slide target, toggling the [hidden attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden) it its index matches.
+
+We initialize the controller by showing the first slide, and the `next()` and `previous()` action methods advance and rewind the current slide.
+
+> Lifecycle Callbacks Explained
+
+What does the `initialize()` method do ? How it it different from the `connect()` method we've used before ?
+
+These are Stimulus lifecycle callback methods, and they're useful for setting yp or tearing down associated state when your controller enters or leaves the document.
+
+| Method       | Invoked by Stimulus                                 |
+|--------------|-----------------------------------------------------|
+| initialize() | Once, when the controller is first instantiated     |
+| connect()    | Anytime the controller is connected to the DOM      |
+| disconnect() | Anytime the controller is disconnected from the DOM |
+
+Reload the page and confirm that the Next button advances to the next slide.
 
 ## <u>6. Working With External Resources</u>
 
