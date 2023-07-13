@@ -604,6 +604,29 @@ These are Stimulus lifecycle callback methods, and they're useful for setting yp
 
 Reload the page and confirm that the Next button advances to the next slide.
 
+## b. Reading Initial State from the DOM
+
+Notice how our controller tracks its state - the currently selected slide - in the `this.index` property.
+
+Now say we'd like to start one of our slideshows with the second slide visible instead of the first. How can we encode the start index in our markup?
+
+One way might be to load the initial index with an HTML `data` attribute. For example, we could add a `data-index` attribute to the controller's element:
+
+```HTML
+<div data-controller="slideshow" data-index="1>
+```
+
+Then, in our `initialize()` method, we could read that attribute, convert it to an integer, and pass it to `showCurrentSlide()`:
+
+```JS
+initialize() {
+  this.index = Number(this.element.dataset.index)
+  this.showCurrentSlide()
+}
+```
+
+This might get the job done, but it's clunky, requires us to make a decision about what to name the attribute, and doesn't help us if we want to access the index again or increment it and persist the result in the DOM.
+
 ## <u>6. Working With External Resources</u>
 
 ## <u>7. Installing Stimulus in Your Application</u>
