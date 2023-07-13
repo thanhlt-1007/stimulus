@@ -466,6 +466,60 @@ It's tempting to write off support for older browsers as not worth the effort, o
 
 This resilient approach, commonly known as progressive enhancement, is the practice of delivering web interfaces such as the basic functionality is implemented in HTML and CSS, and tiered upgrades to that base experience are layered on top with CSS and JavaScript, progressively, when their underlying technologies are supported by the browser.
 
+### a. Progressively Enhancing the PIN Field
+
+Let's look at how we can progressively enhance our PIN field so that that Copy button is invisible unless it's supported by the browser. That way we can avoid showing someone a button that doesn't work.
+
+We'll start by hiding the Copy button in CSS. Then we'll feature-test support for Clipboard API in our Stimulus controller. If the API is supported, we'll add a class name to the controller element to reveal the button.
+
+We start off by adding `data-clipboard-supported-class="clipboard--supported"` to the `div` element that has the `data-controller` attribute:
+
+```HTML
+<div data-controller="clipboard" data-clipboard-supported-class="clipboard--supported">
+```
+
+Then add `class="slipboard-button"` to the button element:
+
+```HTML
+<button data-action="clipboard#copy" class="clipboard-button">Copy to Clipboard</button>
+```
+
+Then add the following styles to `public/main.css`
+
+```CSS
+.clipboard-button {
+  display: none;
+}
+
+.clipboard--supported .clipboard-button {
+  display: initial;
+}
+```
+
+First we'll add the `data-clipboard-supported-class` attribute inside the controller as a static class:
+
+```JS
+static classes = ["supported"]
+```
+
+This will let us control the specific CSS class in the HTML, so our controller becomes even more easily adaptable to different CSS approaches. The specific class added like this can be access via `this.supportedClass`.
+
+Now add a `connect()` method to the controller which will test to see if the clipboard API is supported and add a class name to the controler's element:
+
+```JS
+connect() {
+  if ("clipboard" in navigator) {
+    this.element.classList.add(this.supportedCLass);
+  }
+}
+```
+
+You can place this method anywhere in the controller's class body.
+
+If you wish, disable JavaScript in your browser, reload the page, and notice the Copy button is no longer visible.
+
+We have progressively enhance the PIN field: its Copy button's baseline state is hidden, becoming visible only when our JavaScript detects support for the clipboard API.
+
 ## <u>5. Managing State</u>
 
 ## <u>6. Working With External Resources</u>
