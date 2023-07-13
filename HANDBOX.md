@@ -520,6 +520,12 @@ If you wish, disable JavaScript in your browser, reload the page, and notice the
 
 We have progressively enhance the PIN field: its Copy button's baseline state is hidden, becoming visible only when our JavaScript detects support for the clipboard API.
 
+### b. Wrap-Up and Next Steps
+
+In this chapter we gently modified our clipboard controller to be resilient against older browsers and degraded network conditions.
+
+Next, we;ll learn about how Stimulus controllers manage state.
+
 ## <u>5. Managing State</u>
 
 ## <u>6. Working With External Resources</u>
