@@ -458,6 +458,14 @@ Now let's see how small changes to the controller's design can lead us to a more
 
 ## <u>4. Designing For Resilience</u>
 
+Although the clipboard API us [well-supported in current browsers](https://caniuse.com/clipboard), we might still expect to have a small number of people with older browser using our application.
+
+We should also expect people to havce problem accessing our application from time to time. For example, intermitten network connectivity or CDN availablity could prevent some or all of our JavaScript from loading.
+
+It's tempting to write off support for older browsers as not worth the effort, or to dismiss network isssues as temporary glitch that resolve themselves after a refresh. But aftem it's trivially easy to build features in a way that's gracefully resilient to these types of problems.
+
+This resilient approach, commonly known as progressive enhancement, is the practice of delivering web interfaces such as the basic functionality is implemented in HTML and CSS, and tiered upgrades to that base experience are layered on top with CSS and JavaScript, progressively, when their underlying technologies are supported by the browser.
+
 ## <u>5. Managing State</u>
 
 ## <u>6. Working With External Resources</u>
