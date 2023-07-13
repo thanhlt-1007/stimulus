@@ -524,9 +524,13 @@ We have progressively enhance the PIN field: its Copy button's baseline state is
 
 In this chapter we gently modified our clipboard controller to be resilient against older browsers and degraded network conditions.
 
-Next, we;ll learn about how Stimulus controllers manage state.
+Next, we'll learn about how Stimulus controllers manage state.
 
 ## <u>5. Managing State</u>
+
+Most contemporary frameworks encourage you to keep state in JavaScript at all time. They treat the DOM as a write-only renderin target, reconciled by client-side templates consuming JSOn from the server.
+
+Stimulus takes a different approach. A stimulus application's state lives as attribute in the DOM; controller themselves are largely stateless. This approach makes it possible to work with HTML from anywhere - the initial document, and Ajax request, a Turbo visit, or event another JavaScript library - and have associated controller spring to life automatically without any explicit initialization step.
 
 ## <u>6. Working With External Resources</u>
 
