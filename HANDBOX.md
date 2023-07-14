@@ -748,6 +748,14 @@ That would start the index at 2, if no `data-slideshow-index-value` attribute wa
 static values = { index: { type: Number, default: 2 }, effect: { type: String, default: "kenburns" } }
 ```
 
+### f. Wrap-Up and Next Steps
+
+In this chapter we've seen how to use the values to load and persist the current index of a slideshow controller.
+
+From a usability perspective, our controller is incomplete. The Previous button appears to do nothing when you are looking at the first slide. Internally, `indexValue` decrement from `0` to `-1`. Could we make the value wrap around to the last slide index instead? (There's a similar problem with the Next button).
+
+Next we’ll look at how to keep track of external resources, such as timers and HTTP requests, in Stimulus controllers.
+
 ## <u>6. Working With External Resources</u>
 
 ## <u>7. Installing Stimulus in Your Application</u>
