@@ -734,6 +734,20 @@ Reload the page and confirm ths slideshow behavior is the same.
 
 Stimulus calls the `indexValueChanged()` method at initialization and in response to any change to the `data-slideshow-index-value` attribute. You can even fiddle with the attribute in the web inspector and the controller will change sliudes in response. Go ahead-try it out!
 
+### e. Settings Defaults
+
+It's also possible to set a default values as part of the static definition. This is done like so:
+
+```JS
+static values = { index: { type: Number, default: 2 } }
+```
+
+That would start the index at 2, if no `data-slideshow-index-value` attribute was defined on the controller element. If you had other values, you can mix and match what needs a default and what doesn't:
+
+```JS
+static values = { index: { type: Number, default: 2 }, effect: { type: String, default: "kenburns" } }
+```
+
 ## <u>6. Working With External Resources</u>
 
 ## <u>7. Installing Stimulus in Your Application</u>
