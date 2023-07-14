@@ -758,4 +758,8 @@ Next we’ll look at how to keep track of external resources, such as timers and
 
 ## <u>6. Working With External Resources</u>
 
+In the last chapter we learned how to load and persist a controller's internal state using values.
+
+Sometimes our controller need to track the state of external resources, where by external we mean anything that isn't in the DOM or a part of Stimulus. For example, we may need to issue an HTTP request and respond as the request's state changes. Or we may want to start a timer and then stop it when the controller is no longer connected. In thif chapter we'll how to do both of those things.
+
 ## <u>7. Installing Stimulus in Your Application</u>
