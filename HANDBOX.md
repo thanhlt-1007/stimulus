@@ -812,4 +812,8 @@ When the controller connects, we kick off a [Fetch](https://developer.mozilla.or
 
 Open the network tab in your browser's developer console and reload the page. You'll see a request representing the initial page load, followed by our controller's subsequent request to `message.html`.
 
+### b. Refreshing Automatically With a Timer
+
+Let's 
+
 ## <u>7. Installing Stimulus in Your Application</u>
