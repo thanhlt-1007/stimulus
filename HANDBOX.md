@@ -695,6 +695,45 @@ export default class extends Controller {
 
 Reload the page and use the web inspector to confirm the controller element's `data-slideshow-index-value` attribute changes as you move from one slide to the next.
 
+### d. Change Callbacks
+
+Our revised controller improves on the original version, but the repeated calls to `this.showCurrentSlide()` standout. We have to manually update the state of the document when the controller initializes after every place where we update `this.indexValue`.
+
+We can define a Stimulus value change callback to clean up the repetition and specify how the controller should respond whenever the index value changes.
+
+First, remove the `initialize()` method and definde a new method, `indexValueChanged()`. Then remove the calls to `this.showCurrentSlide()` from `next()` and `previous()`:
+
+```JS
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  static targets = ["slide"]
+  static values = { index: Number }
+
+  next() {
+    this.indexValue++
+  }
+
+  previous() {
+    this.indexValue++
+  }
+
+  indexValueChanged() {
+    this.showCurrentSlide()
+  }
+
+  showCurrentSlide() {
+    this.slideTargets.forEach((element, index) => {
+      element.hidden = index !== this.indexValue
+    })
+  }
+}
+```
+
+Reload the page and confirm ths slideshow behavior is the same.
+
+Stimulus calls the `indexValueChanged()` method at initialization and in response to any change to the `data-slideshow-index-value` attribute. You can even fiddle with the attribute in the web inspector and the controller will change sliudes in response. Go ahead-try it out!
+
 ## <u>6. Working With External Resources</u>
 
 ## <u>7. Installing Stimulus in Your Application</u>
