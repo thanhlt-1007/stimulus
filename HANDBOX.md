@@ -772,11 +772,11 @@ Begin by sketching the inbox in `public/index.html`:
 
 ```HTML
 <div data-controller="content-loader"
-     data-content-loader-url-value="/message.html">
+     data-content-loader-url-value="/messages.html">
 </div>
 ```
 
-Then create a new `public/message.html` file with some HTML for our message list:
+Then create a new `public/messages.html` file with some HTML for our message list:
 
 ```HTML
 <ol>
@@ -810,10 +810,49 @@ export default class extends Controller {
 
 When the controller connects, we kick off a [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) request to the URL specified in the element's `data-content-loader-url-value` attribute. Then we load the returned HTML by assigning it to our element's `innerHTML` property.
 
-Open the network tab in your browser's developer console and reload the page. You'll see a request representing the initial page load, followed by our controller's subsequent request to `message.html`.
+Open the network tab in your browser's developer console and reload the page. You'll see a request representing the initial page load, followed by our controller's subsequent request to `messages.html`.
 
 ### b. Refreshing Automatically With a Timer
 
-Let's 
+Let's improve our controller by changing it to periodically refresh the inbox so it;s always up-to-date.
+
+We'll use the `data-content-loader-refresh-interval-value` attribute to specify how often the controller should reload its contents, in miliseconds:
+
+```HTML
+<div data-controller="content-loader"
+     data-content-loader-url-value="/messages.html"
+     data-content-loader-refresh-interval-value="500">
+</div>
+```
+
+Now we can update the controller to check for the interval and, if present, start a refresh timer.
+
+Add a `static values` definition to the controller, and define a new method `startRefreshing()`:
+
+```JS
+export default class extends Controller {
+  static values = { url: String, refreshInterval: Number }
+
+  startRefreshing() {
+    setInterval(() => {
+      this.load()
+    }, this.refreshIntervalValue)
+  }
+}
+```
+
+Then update the `connect()` method to call `startRefreshing()` if an interval value is present.
+
+```JS
+conenct() {
+  this.load()
+
+  if (this.hasRefreshingIntervalvalue) {
+    this.startRefreshing()
+  }
+}
+```
+
+Reload the page and observe a new request once every five seconds in the developer console. Then make a change to `public/messages.html` and wait for it to appear in the inbox.
 
 ## <u>7. Installing Stimulus in Your Application</u>
