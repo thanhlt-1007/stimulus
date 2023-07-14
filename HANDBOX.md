@@ -762,4 +762,54 @@ In the last chapter we learned how to load and persist a controller's internal s
 
 Sometimes our controller need to track the state of external resources, where by external we mean anything that isn't in the DOM or a part of Stimulus. For example, we may need to issue an HTTP request and respond as the request's state changes. Or we may want to start a timer and then stop it when the controller is no longer connected. In thif chapter we'll how to do both of those things.
 
+### a. Asynchronously Loading HTML
+
+Let's learn how to populate parts of a page asynchronously by loading and inserting remote fragments of HTML. We use this technique in Basecamp to keep our initial page loads fast, and to keep our views free of user-specific content so they can be cached more effectively.
+
+We'll build a general-purpose content loader controller which populates its element with HTML fetched from the server. Then we'll use it to load a list of unread messages like you'd see in an email inbox.
+
+Begin by sketching the inbox in `public/index.html`:
+
+```HTML
+<div data-controller="content-loader"
+     data-content-loader-url-value="/message.html">
+</div>
+```
+
+Then create a new `public/message.html` file with some HTML for our message list:
+
+```HTML
+<ol>
+  <li>New Message: Stimulus Launch Party</li>
+  <li>Overdue: Finish Stimulus 1.0</li>
+</ol>
+```
+
+(In a real application you'd generate this HTML dynamically on the server, but for demonstration purpose we;ll just use a static file.)
+
+Now we can implement our controller:
+
+```JS
+// src/controllers/content_loader_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  static values = ["url"]
+
+  connect() {
+    this.load()
+  }
+
+  load() {
+    fetch(this.urlValue)
+      .then(response => response.text())
+      .then(html => this.element.innerHTML = html)
+  }
+}
+```
+
+When the controller connects, we kick off a [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) request to the URL specified in the element's `data-content-loader-url-value` attribute. Then we load the returned HTML by assigning it to our element's `innerHTML` property.
+
+Open the network tab in your browser's developer console and reload the page. You'll see a request representing the initial page load, followed by our controller's subsequent request to `message.html`.
+
 ## <u>7. Installing Stimulus in Your Application</u>
