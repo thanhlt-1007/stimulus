@@ -627,6 +627,74 @@ initialize() {
 
 This might get the job done, but it's clunky, requires us to make a decision about what to name the attribute, and doesn't help us if we want to access the index again or increment it and persist the result in the DOM.
 
+### c. Using Values
+
+Stimulus controllers support typed value property which automaticaly map to data attributes. When we add a value definition to the top of our controller class:
+
+```JS
+static values = { index: Number }
+```
+
+Stimulus will create a `this.indexValue` controller property associated with a `data-slideshow-index-value` attribute, and handle the numeric conversion for us.
+
+Let's see that in action. And the associated data attribute to our HTML:
+
+```HTML
+<div data-controller="slideshow" data-slideshow-index-value="1">
+```
+
+Than add a `static values` definition to the controller and change the `initialize()` method to log `this.indexValue`:
+
+```JS
+export default class extends Controller {
+  static values = { index: Number }
+
+  initialize() {
+    console.log(this.indexValue)
+    console.log(typeof this.indexValue)
+  }
+}
+```
+
+Reload the page and verify that the console show `1` and `Number`.
+
+> What's with that `static values` line ?
+
+Similiar to targets, you define values in a Stimulus controller ny describing them in a static object property called `values`. In this case, we've defined a single numeric value called `index`. You can read more about value definitions in the [reference documentation](https://stimulus.hotwired.dev/reference/values).
+
+Now let's update `initialize()` and the other methods in the controller to use `this.indexValue` instead of `this.index`. Here how the controller should look when we're done.
+
+```JS
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  static targets = ["slide"]
+  static values = { index: Number }
+
+  initialize() {
+    this.showCurrentSlide()
+  }
+
+  next() {
+    this.indexValue ++
+    this.showCurrentSlide()
+  }
+
+  previous() {
+    this.indexValue --
+    this.showCurrentSlide()
+  }
+
+  showCurrentSLide() {
+    this.slideTargets.forEach((element, index) => {
+      element.hidden = index !== this.indexValue
+    })
+  }
+}
+```
+
+Reload the page and use the web inspector to confirm the controller element's `data-slideshow-index-value` attribute changes as you move from one slide to the next.
+
 ## <u>6. Working With External Resources</u>
 
 ## <u>7. Installing Stimulus in Your Application</u>
