@@ -1090,3 +1090,7 @@ Stimulus.handleError = (error, message, detail) => {
   ErrorTrackingSystem.captureException(error)
 }
 ```
+
+### g. Debugging
+
+If you've assigned your Stimulus application to `window.Stimulus`, you can turn on [debugging mode](https://github.com/hotwired/stimulus/pull/354) from the console with `Stimulus.debug = true`. You can set this flag when you're configuring your application instance in the source code.
