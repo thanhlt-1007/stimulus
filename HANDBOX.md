@@ -1016,3 +1016,34 @@ Stimulus.register("clipboard", ClipboardController)
 ```
 
 If you're using stimulus-rails with a builder like esbuild, you can use the `stimulus:manifest:update` Rake task and `./bin/rails generate stimulus [controller]` generator to keep a controller index file located at `app/javascript/controller/index.js` automatically updated.
+
+### d. Using Without a Build System
+
+If you prefer not to use a build system, you can load Stimulus in a `<script type="module">` tag:
+
+```HTML
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script type="module">
+    import { Application, Controller } from "https://unpkg.com/@hotwired/stimulus/dist/stimulus.js"
+
+    window.Stimulus = Application.start()
+    Stimulus.register("hello", class extends Controller {
+      static targets = ["name"]
+
+      connect() {
+
+      }
+    })
+  </script>
+</head>
+<body>
+  <div data-controller="hello">
+    <input data-hello-target="name" type="text">
+    ...
+  </div>
+</body>
+</html>
+```
