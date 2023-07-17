@@ -930,5 +930,30 @@ export default class extends Controller {
 }
 ```
 
+### d. Using action parameters
+
+If we wanted to make the loader work with multiple different sources, we could do it using action parameters. Take this HTML:
+
+```HTML
+<div data-controller="content-loader">
+  <a href="#" data-controller-loader-url-params="/messages.html" data-action="content-loader#load">
+    Messages
+  </a>
+  <a href="#" data-controller-loader-url-params="/contents.html" data-action="content-loader#load">
+    Contents
+  </a>
+</div>
+```
+
+We could even destruct the params to just get the URL parameter:
+
+```JS
+load({ params: { ulr }}) {
+  fetch(url)
+    .then(response => response.text())
+    .then(html => this.element.innterHTML = html)
+}
+```
+
 ## <u>7. Installing Stimulus in Your Application</u>
 `
