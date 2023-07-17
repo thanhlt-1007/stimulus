@@ -985,3 +985,16 @@ If you prefer, you may use dashes instead of underscores anywhere in a controlle
 | date_picker_controller.js            | data-picker                |
 | users/list_item_controller.js        | user--list-item            |
 | local-time-controller.js             | local-time                 |
+
+### b. Using Webpack Helpers
+
+If you're using Webpack as your JavaScript bundler, you can use the [@hotwired/stimulus-webpack-helpers](https://www.npmjs.com/package/@hotwired/stimulus-webpack-helpers) package to get the same form of autoloading behavior as Stimulus for Rails. First add the package, then use it like this.
+
+```JS
+import { Application } from "@hotwired/stimulus"
+import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
+
+window.Stimulus = Application.start()
+const context = require.context("./controllers", true, /\.js$/)
+Stimulus.load(definitionsFromContext(context))
+```
