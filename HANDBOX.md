@@ -962,4 +962,5 @@ In this chaptert we've seen how to acquire and release external resources using 
 Next we'll see how to install and configure Stimulus in your own application.
 
 ## <u>7. Installing Stimulus in Your Application</u>
-`
+
+To install Stimulus in your application, add the [@hotwired/stimulus npm package](https://www.npmjs.com/package/@hotwired/stimulus) to your JavaScript bundle. Or, import [stimulus.js](https://unpkg.com/@hotwired/stimulus@3.2.1/dist/stimulus.js) in a `<script type="module">` tag.
