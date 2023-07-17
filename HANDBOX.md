@@ -1071,3 +1071,22 @@ const customSchema = {
 
 window.Stimulus = Application.start(document.documentElement, customSchema);
 ```
+
+### f. Error handling
+
+All calls from Stimulus to your application's are wrapped in a `try ... catch` block.
+
+If your code throws an error, it will be caught by Stimulus and logged to the browser console, including extra detail such as the controller name and event or lifecycle function being called. If you use an error tracking system that defines `window.onerror`, Stimulus will also pass the error on to it.
+
+You can override how Stimulus handles errors by defining `Application#handleError`:
+
+```JS
+// src/application.js
+import { Application } from "@hotwired/stimulus"
+window.Stimulus = Application.start()
+
+Stimulus.handleError = (error, message, detail) => {
+  console.warn(message, detail)
+  ErrorTrackingSystem.captureException(error)
+}
+```
