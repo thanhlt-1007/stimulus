@@ -1094,3 +1094,7 @@ Stimulus.handleError = (error, message, detail) => {
 ### g. Debugging
 
 If you've assigned your Stimulus application to `window.Stimulus`, you can turn on [debugging mode](https://github.com/hotwired/stimulus/pull/354) from the console with `Stimulus.debug = true`. You can set this flag when you're configuring your application instance in the source code.
+
+### h. Browser Support
+
+Stimulus supports all evergreen, self-updating desktop and mobile browsers out of the box. Stimulus 3+ does not support Internet Explorer 11 (but you can use Stimulus 2 with the @stimulus/polyfills for that).
