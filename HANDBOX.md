@@ -968,3 +968,20 @@ To install Stimulus in your application, add the [@hotwired/stimulus npm package
 ### a. Using Stimulus for Rails
 
 If you're using [Stimulus for Rails](https://github.com/hotwired/stimulus-rails/) together with an [import map](https://github.com/rails/importmap-rails), the integration will automatically load all controller files from `app/javascript/controllers`.
+
+#### i. Controller Filenames Map to Identifiers
+
+Name your controllers files `[identifier]_controller.js`, where `identifier` corresponds to each controller's `data-controller` identifier in your HTML.
+
+Stimulus for Rails conventionally separates multiple words in filenames using underscores. Each underscore in a controller's filename translates to a dash in its identifier.
+
+You may also namespace your controllers using subfolders. Each forward slash in a namespace file's path becomes two dashes in its identifier.
+
+If you prefer, you may use dashes instead of underscores anywhere in a controller's filename. Stimulus treats them identically.
+
+| If your controller file is named ... | its identifier will be ... |
+| ------------------------------------ | -------------------------- |
+| clipboard_controller.js              | clipboard                  |
+| date_picker_controller.js            | data-picker                |
+| users/list_item_controller.js        | user--list-item            |
+| local-time-controller.js             | local-time                 |
