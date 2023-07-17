@@ -998,3 +998,21 @@ window.Stimulus = Application.start()
 const context = require.context("./controllers", true, /\.js$/)
 Stimulus.load(definitionsFromContext(context))
 ```
+
+### c. Using Other Build Systems
+
+Stimulus works with other build systems too, but without support for controller autoloading. Instead, you must explicitly load and register controller files with your application instance:
+
+```JS
+// src/application.js
+import { Application } from "@hotwired/stimulus"
+
+import HelloController from "./controllers/hello_controller"
+import ClipboardController from "./controllers/clipboard_controller"
+
+window.Stimulus = Application.start()
+Stimulus.register("hello", HelloController)
+Stimulus.register("clipboard", ClipboardController)
+```
+
+If you're using stimulus-rails with a builder like esbuild, you can use the `stimulus:manifest:update` Rake task and `./bin/rails generate stimulus [controller]` generator to keep a controller index file located at `app/javascript/controller/index.js` automatically updated.
