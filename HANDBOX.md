@@ -855,4 +855,80 @@ conenct() {
 
 Reload the page and observe a new request once every five seconds in the developer console. Then make a change to `public/messages.html` and wait for it to appear in the inbox.
 
+### c. Releasing Tracked Resources
+
+We start our timer when the controller connects, but we never stop it. That means if our controller's element were to disappear, the controller would continue to issue HTTP trquests in the background.
+
+We can fix this issue by modifying our `startRefreshing()` method to keep a reference to the timer:
+
+```JS
+startRefreshing() {
+  this.refreshTimer = setInterval(() => {
+    this.load()
+  }, this.refreshInterValue)
+}
+```
+
+Then we can add a corresponding `stopRefreshing()` method below to cancel the timer:
+
+```JS
+stopRefreshing() {
+  if (this.refreshTimer) {
+    clearInterval(this.refreshTimer)
+  }
+}
+```
+
+Finally, to instruct Stimulus to cancel the timer when the controller disconnect, we'll `disconnect()` method:
+
+```JS
+disconnect() {
+  this.stopRefreshing()
+}
+```
+
+Now we can be sure a content loader controller will only issue requests when it's connected to the DOM.
+
+Let's take a look at our final controller class:
+
+```JS
+// src/controllers/content_loader_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  static values = { url: String, refreshInterval: Number }
+
+  connect() {
+    this.load()
+
+    if (this.hasRefreshIntervalValue) {
+      this.startRefreshing()
+    }
+  }
+
+  disconnect() {
+    this.stopRefreshing()
+  }
+
+  load() {
+    fetch(this.urlValue)
+      .then(response => response.text())
+      .then(html => this.element.innerHTML = html)
+  }
+
+  startRefreshing() {
+    this.refreshTimer = setInterval(() => {
+      this.load()
+    }, this.refreshIntervalValue)
+  }
+
+  stopRefreshing() {
+    if (this.refreshTimer) {
+      clearInterval(this.refreshTimer)
+    }
+  }
+}
+```
+
 ## <u>7. Installing Stimulus in Your Application</u>
+`
