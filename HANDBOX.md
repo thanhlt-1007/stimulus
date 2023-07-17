@@ -955,5 +955,11 @@ load({ params: { ulr }}) {
 }
 ```
 
+### e. Wrap-Up and Next Steps
+
+In this chaptert we've seen how to acquire and release external resources using Stimulus lifecycle callbacks.
+
+Next we'll see how to install and configure Stimulus in your own application.
+
 ## <u>7. Installing Stimulus in Your Application</u>
 `
