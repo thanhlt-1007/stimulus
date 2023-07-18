@@ -187,6 +187,72 @@ application.register("spinner", SpinnerButton)
 
 The `afterLoad` method will get called as soon as the controller has been registered, even if no controlled elements exist in the DOM. It gets called with the `identifier` that was used when registering the controller and the Stimulus application instance.
 
+#### iv. Cross-Controller Coordination With Events
+
+If you need controllers to communicate with each other, you should use events. The `Controller` class has a convenience method called `dispatch` that makes this easier. It takes an `eventName` as the first argument, which is then automatically prefixed with the name of the controller seperated by a colon. The payload is held in `detail`. It work like this:
+
+```JS
+class ClipboardController extends Controller {
+  static targets = ["source"]
+
+  copy() {
+    this.dispatch("copy", { detail: { content: this.sourceTarget.value } })
+    navigator.clipboard.writeText(this.sourceTarget.value)
+  }
+}
+```
+
+And this event can then be routed to an action on another controller
+
+```HTML
+<div data-controller="clipboard effects" data-action="clipboard:copy->effects#flash">
+  PIN: <input data-clipboard-target="source" type="text" value="1234" readonly>
+  <button data-action="clipboard#copy">Copy ti Clipboard</button>
+</div>
+```
+
+So when `Clipboard#copy` action is invoked, the `Effect#flash` action is be too:
+
+```JS
+class EffectController extends Controller {
+  flash({ detail: { content }}) {
+    console.log(content) // 1234
+  }
+}
+```
+
+`dispatch` accepts addtional options as the second parameter as follow
+
+| option     | default         | notes                                                                                                                                                                                     |
+|------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| detail     | {} empty object | See [CustomEvent.detail](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/detail)                                                                                             |
+| target     | this.element    | See [Event.target](https://developer.mozilla.org/en-US/docs/Web/API/Event/target)                                                                                                         |
+| prefix     | this.identifier | If the prefix is falsy (e.g: `null` or `false`), only the `eventName` will be used. If you provide a string value the `eventName` will be prepended with the provided string and a colon. |
+| bubbles    | true            | See [Event.bubbles](https://developer.mozilla.org/en-US/docs/Web/API/Event/bubbles)                                                                                                       |
+| cancelable | true            | See [Event.cancelable](https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelable)                                                                                                 |
+
+`dispatch` will return the generated [CustomEvent](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent), you can use this to provide a way for the event to be cancelled by any other listeners as follows:
+
+```JS
+class ClipboardController extends Controller {
+  static targets = ["source"]
+
+  copy() {
+    const event = this.dispatch("copy", { cancellable: true })
+    if (event.defaultPrevented) return
+
+    navigator.clipboard.writeText(this.sourceTarget.value)
+  }
+}
+
+class Effects extends Controllers {
+  flash(event) {
+    // this will prevent the default behaviour as determined by the dispatch event
+    event.preventDefault()
+  }
+}
+```
+
 ## <u>2. Lifecycle Callbacks</u>
 
 ## <u>3. Actions</u>
