@@ -104,6 +104,14 @@ Similary, it's common for multiple elements on the page to reference the same co
 
 Here, each `<li>` has its own instance of the `list-item` controller.
 
+### g. Naming Conventions
+
+Always use camelCase for method and property names in a controller class.
+
+When an identifier is composed of more than one word, write the words in kebab-case (i.e,. by using dashes: `date-picker`, `list-item`).
+
+In filenames, separate multiple words using either underscores or dashes (snake_case or kebab-case: `controllers/date_picker_controller.js`, `controllers/list-item-controller.js`).
+
 ## <u>2. Lifecycle Callbacks</u>
 
 ## <u>3. Actions</u>
