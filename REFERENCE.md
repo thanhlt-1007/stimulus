@@ -112,6 +112,12 @@ When an identifier is composed of more than one word, write the words in kebab-c
 
 In filenames, separate multiple words using either underscores or dashes (snake_case or kebab-case: `controllers/date_picker_controller.js`, `controllers/list-item-controller.js`).
 
+### h. Registration
+
+If you use Stimulus for Rails with and import map or Webpack together with the `@hotwired/stimulus-weboack-helpers` package, your application will automatically load and register controller classes following the conventions above.
+
+If not, your application must manually load and register each controller class.
+
 ## <u>2. Lifecycle Callbacks</u>
 
 ## <u>3. Actions</u>
