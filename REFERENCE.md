@@ -118,6 +118,26 @@ If you use Stimulus for Rails with and import map or Webpack together with the `
 
 If not, your application must manually load and register each controller class.
 
+#### - Registering Controllers Manually
+
+To manually register a controller class with an identifier, first import the class, then call the `Application#register` method on your application object:
+
+```JS
+import ReferenceController from "./controllers/reference_controller"
+
+application.register("reference", ReferenceController)
+```
+
+You can also register a controller class inline instead of importing it from a module:
+
+```JS
+import { Controller } from "@hotwired/stimulus"
+
+application.register("reference", class extends Controler {
+  
+})
+```
+
 ## <u>2. Lifecycle Callbacks</u>
 
 ## <u>3. Actions</u>
