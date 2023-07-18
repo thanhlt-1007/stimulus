@@ -1,5 +1,17 @@
 ## <u>1. Controllers</u>
 
+A controller is the basic organizational unit of a Stimulus application.
+
+```JS
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+
+}
+```
+
+Controller are instances of JavaScript classes that you define in your application. Each controller class inherits from the `Controller` base class exported by the `@hotwired/stimulus` module.
+
 ## <u>2. Lifecycle Callbacks</u>
 
 ## <u>3. Actions</u>
