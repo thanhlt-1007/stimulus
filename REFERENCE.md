@@ -82,6 +82,28 @@ For example, the `#parent` controller below is only aware of the `item` targets 
 </ul>
 ```
 
+### f. Multiple Controllers
+
+The `data-controller` attribute's value is a space-separated list of identifiers:
+
+```HTML
+<div data-controller="clipboard list-item"></div>
+```
+
+It's common for any given element on the page to have many controllers. In the example above, the `<div>` has two connected controllers, `clipboard` and `list-item`
+
+Similary, it's common for multiple elements on the page to reference the same controller class:
+
+```HTML
+<ul>
+  <li data-controller="list-item">One</li>
+  <li data-controller="list-item">Two</li>
+  <li data-controller="list-item">Three</li>
+</ul>
+```
+
+Here, each `<li>` has its own instance of the `list-item` controller.
+
 ## <u>2. Lifecycle Callbacks</u>
 
 ## <u>3. Actions</u>
