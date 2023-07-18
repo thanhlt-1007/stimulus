@@ -1,3 +1,5 @@
+# REFERENCE
+
 ## <u>1. Controllers</u>
 
 A controller is the basic organizational unit of a Stimulus application.
@@ -118,7 +120,7 @@ If you use Stimulus for Rails with and import map or Webpack together with the `
 
 If not, your application must manually load and register each controller class.
 
-#### - Registering Controllers Manually
+#### i. Registering Controllers Manually
 
 To manually register a controller class with an identifier, first import the class, then call the `Application#register` method on your application object:
 
@@ -134,8 +136,23 @@ You can also register a controller class inline instead of importing it from a m
 import { Controller } from "@hotwired/stimulus"
 
 application.register("reference", class extends Controler {
-  
+
 })
+```
+
+#### ii. Preventing Registration Based On Environmental Factors
+
+If you only want a controller registered and loaded if certain environmental factors are met - such a given user agent - you can override the static `shouldLoad` method:
+
+```JS
+class UnloadableController extends ApplicationController {
+  static get shouldLoad() {
+    return false
+  }
+}
+
+// This controller will not be loaded
+application.register("unloadable", UnloadableController)
 ```
 
 ## <u>2. Lifecycle Callbacks</u>
