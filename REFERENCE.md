@@ -155,6 +155,38 @@ class UnloadableController extends ApplicationController {
 application.register("unloadable", UnloadableController)
 ```
 
+#### iii. Trigger Behaviour When A Controller Is Registered
+
+If you want to trigger some behaviour once a controller has been registered you can add a static `afterLoad` method:
+
+```JS
+class SpinnerButton extends Controller {
+  static afterLoad(identifier, application) {
+    // use the application instance to read the configured 'data-controller' attribute
+    const { controllerAttribute } = application.schema
+
+    // update any legacy buttons with the controller's registered identifier
+    const updateLegacySpinners = () => {
+      document.querySelector(".legacy-spinner-button").forEach((element) => {
+        element.setAttribute(controllerAttribute, identifier)
+      })
+    }
+
+    // called as soon as registered so DOM may not have loaded yet
+    if () {
+      document.addEventListener("DOMContentLoaded", updateLegacySpinners)
+    } else {
+      updateLegacySpinners()
+    }
+  }
+}
+
+// This controller will update any legacy spinner buttons to use the controller
+application.register("spinner", SpinnerButton)
+```
+
+The `afterLoad` method will get called as soon as the controller has been registered, even if no controlled elements exist in the DOM. It gets called with the `identifier` that was used when registering the controller and the Stimulus application instance.
+
 ## <u>2. Lifecycle Callbacks</u>
 
 ## <u>3. Actions</u>
