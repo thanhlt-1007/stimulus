@@ -49,6 +49,20 @@ The following is an example of how Stimulus will generate identifiers for contro
 | users/list_item_controller.js       | users--list-item          |
 | local-time-controller.js            | local-time                |
 
+### d. Scopes
+
+When Stimulus connects a controller to an element, that element and all of its children make up the controller's scope.
+
+For example, the `<div>` and `<h1>` below are part of the controller's scope, but the surrounding `<main>` element is not.
+
+```HTML
+<main>
+  <div data-controller="reference">
+    <h1>Reference</h1>
+  </div>
+</main>
+```
+
 ## <u>2. Lifecycle Callbacks</u>
 
 ## <u>3. Actions</u>
