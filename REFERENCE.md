@@ -28,6 +28,27 @@ Define your controller classes in JavaScript modules, one per file.Export each c
 
 Place these modules in the `controllers/` directory. Nam the files `[identifier]_controller.js` where `[identifier]` corresponds to each controller's identifier.
 
+### c. Identifiers
+
+An identifier is the name you use to reference a controller class in HTML.
+
+When you add a `data-controller` attribute to an element, Stimulus reads the identifier from the attribute's value and creates a new instance of the corresponding controller class.
+
+For example, this element has a controller which is an instance of the class defined in `controllers/reference_controller.js`
+
+```HTML
+<div data-controller="reference"></div>
+```
+
+The following is an example of how Stimulus will generate identifiers for controllers in its require context:
+
+| If your controller file is named... | Its identifier will be... |
+| ----------------------------------- | ------------------------- |
+| clipboard_controller.js             | clipboard                 |
+| date_picker_controller.js           | date-picker               |
+| users/list_item_controller.js       | users--list-item          |
+| local-time-controller.js            | local-time                |
+
 ## <u>2. Lifecycle Callbacks</u>
 
 ## <u>3. Actions</u>
