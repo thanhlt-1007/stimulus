@@ -270,6 +270,18 @@ class MyController extends Controller {
 
 ## <u>2. Lifecycle Callbacks</u>
 
+Special methods called lifecycle callbacks allow you to respond whenever a controller or certain targets connects to and disconnects from the document.
+
+```JS
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  connect() {
+    // ..
+  }
+}
+```
+
 ## <u>3. Actions</u>
 
 ## <u>4. Targets</u>
