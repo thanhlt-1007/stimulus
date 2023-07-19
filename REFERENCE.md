@@ -359,6 +359,16 @@ An action is a connection between:
 
 - a DOM event listener
 
+### a. Descriptors
+
+The `data-action` value `click->gallery#next` is called an action descriptor. In this descriptor:
+
+- `click` is the name of the DOM event to listen for
+
+- `gallery` is the controller identifier
+
+- `next` is the name of the method to invoke
+
 ## <u>4. Targets</u>
 
 ## <u>5. Outlets</u>
