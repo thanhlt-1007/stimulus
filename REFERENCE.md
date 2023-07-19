@@ -322,6 +322,14 @@ When this happens, such as after removing the controller's element from the docu
 
 Similarly, a disconnected target may be connected again at a later time. Stimulus will invoke its controller's `[name]TargetConnected()` method multiple times.
 
+### d. Order and Timing
+
+Stimulus watches the page for changes asynchronously using the [DOM MutationObserve API](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver).
+
+This means that Stimulus calls your controller's lifecycle methods asynchronously after changes are made to the document, in the next [microtask](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/) following each change.
+
+Lifecycle methods still run in the order they occur, so two calls to a controller's `connect` method will always be separated by one call to `disconnect()`. Similarly, two calls to a controller's `[name]TargetConnected()` for a given target will ways be separated by one call to `[name]TargetDisconnected()` for that same target.
+
 ## <u>3. Actions</u>
 
 ## <u>4. Targets</u>
