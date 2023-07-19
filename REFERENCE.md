@@ -294,6 +294,16 @@ You may define any of the following methods in your controller"
 | [name]TargetDisconnected(target: Element) | Anytime a target is disconnected from the DOM       |
 | disconnect()                              | Anytime the controller is disconnected from the DOM |
 
+### b. Connection
+
+A controller is connected to the document when both of the following conditions are true:
+
+- its elements is present in the document (i.e., a descendant of `document.documentElement`, the `<html>` element)
+
+- its identifier is present in the element's `data-controller` attribute
+
+When a controller becomes connected, Stimulus calls its `connect()` method.
+
 ## <u>3. Actions</u>
 
 ## <u>4. Targets</u>
