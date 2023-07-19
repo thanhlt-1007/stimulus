@@ -282,6 +282,18 @@ export default class extends Controller {
 }
 ```
 
+### a. Methods
+
+You may define any of the following methods in your controller"
+
+| Method                                    | Invoked by Stimulus...                              |
+|-------------------------------------------|-----------------------------------------------------|
+| initialize()                              | Once, when the controller is first instantiated     |
+| [name]TargetConnected(target: Element)    | Anytime a target is connected to the DOM            |
+| connect()                                 | Anytime the controller is connected to the DOM      |
+| [name]TargetDisconnected(target: Element) | Anytime a target is disconnected from the DOM       |
+| disconnect()                              | Anytime the controller is disconnected from the DOM |
+
 ## <u>3. Actions</u>
 
 ## <u>4. Targets</u>
