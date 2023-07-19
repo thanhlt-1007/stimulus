@@ -332,6 +332,33 @@ Lifecycle methods still run in the order they occur, so two calls to a controlle
 
 ## <u>3. Actions</u>
 
+Actions are how you handle DOM events in your controllers.
+
+```HTML
+<div data-controller="gallery">
+  <button data-action="click->gallery#next">...</button>
+</div>
+```
+
+```JS
+// controllers/gallery_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  next(event) {
+    // ...
+  }
+}
+```
+
+An action is a connection between:
+
+- a controller method
+
+- the controller's element
+
+- a DOM event listener
+
 ## <u>4. Targets</u>
 
 ## <u>5. Outlets</u>
