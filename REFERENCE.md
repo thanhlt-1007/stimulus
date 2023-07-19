@@ -253,6 +253,21 @@ class Effects extends Controllers {
 }
 ```
 
+#### v. Directly Invoking Other Controllers
+
+If for some reason it is not possible to use events to communicate between controllers, you can reach a controller instance via the `getControllerForElementAndIdentifier` method from the application. This should only be used if you have a unique problem that cannot be solved through the more general way of using events, but if you must, this is how:
+
+```JS
+class MyController extends Controller {
+  static targets = ["other"]
+
+  copy() {
+    const otherController = this.application,getControllerFromElementAndIdentifier(this.otherTarget, "other")
+    otherController.otherMethod()
+  }
+}
+```
+
 ## <u>2. Lifecycle Callbacks</u>
 
 ## <u>3. Actions</u>
