@@ -314,6 +314,14 @@ A target is connected to the document when both of the following conditions are 
 
 When a target becomes disconnected, Stimulus calles its controller's `[name]TargetDisconnected()` method, passing the target element as a parameter. The `[name]TargetDisconnected()` lifecycle callbacks will fire before the controller's `disconnect()` callback.
 
+### c. Reconnection
+
+A disconnected controller may become connected again at a later time
+
+When this happens, such as after removing the controller's element from the document and then re-attaching it, Stimulus will reuse the element's previous controller instance, calling its `connect()` method multiple times.
+
+Similarly, a disconnected target may be connected again at a later time. Stimulus will invoke its controller's `[name]TargetConnected()` method multiple times.
+
 ## <u>3. Actions</u>
 
 ## <u>4. Targets</u>
