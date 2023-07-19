@@ -304,6 +304,16 @@ A controller is connected to the document when both of the following conditions 
 
 When a controller becomes connected, Stimulus calls its `connect()` method.
 
+#### i. Targets
+
+A target is connected to the document when both of the following conditions are true:
+
+- its element is present in the document as a descendant of its corresponding controller's element
+
+- its identifier is present in the element's `data-{identifier}-target` attribute
+
+When a target becomes disconnected, Stimulus calles its controller's `[name]TargetDisconnected()` method, passing the target element as a parameter. The `[name]TargetDisconnected()` lifecycle callbacks will fire before the controller's `disconnect()` callback.
+
 ## <u>3. Actions</u>
 
 ## <u>4. Targets</u>
