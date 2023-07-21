@@ -369,6 +369,27 @@ The `data-action` value `click->gallery#next` is called an action descriptor. In
 
 - `next` is the name of the method to invoke
 
+#### i. Event Shorthand
+
+Stimulus lets you shorten the action descriptors for some common element/event pairs, such as the button/click pair abovem by ommiting the event name:
+
+```HTML
+<button data-action="gallery#next">...</button>
+```
+
+The full set of these shorthand pairs is as follows:
+
+| Element           | Default Event |
+|-------------------|---------------|
+| a                 | click         |
+| button            | click         |
+| details           | click         |
+| form              | click         |
+| input             | input         |
+| input type=submit | click         |
+| select            | change        |
+| textarea          | input         |
+
 ## <u>4. Targets</u>
 
 ## <u>5. Outlets</u>
