@@ -534,6 +534,40 @@ The callback accepts a single object argument with the following keys:
 | event   | `Event`: The event instance                                                                |
 | element | `Element`: The element where the action descriptor is declared                             |
 
+### c. Event Objects
+
+An action method is the method in a controller which serves as an action's event listener.
+
+The first argument to an action method is the DOM event object. You may want access to the event for a number of reasons, including:
+
+- to read the key code from a keyboard event
+
+- to read the coordinates of a mouse event.
+
+- to read data from an input event.
+
+- to read params from the action submitter element
+
+- to prevent the browser's default behaviour for an event
+
+- to find out which element dispatched an event before it bubbled up to this action.
+
+The following basic properties are common to all events:
+
+| Event Property      | Value                                                                                                                                |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| event.type          | The name of the event (e.g. `"click"`)                                                                                               |
+| event.target        | The target that dispatched the event (i.e. the innermost element that was clicked)                                                   |
+| event.currentTarget | The target on which the event listener is installed (either the element with the `data-action` attribute, or `document` or `window`) |
+| event.params        | The action params passed by the action submitter element                                                                             |
+
+The following evet methods give you more control over how events are handled:
+
+| Event Method            | Result                                                                            |
+|-------------------------|-----------------------------------------------------------------------------------|
+| event.preventDefault()  | Cancels the event's defaulr behavior (e.g. following a link or submitting a form) |
+| event.stopPropagation() | Stops the event before it bubbles up to other listeners on parent elements        |
+
 ## <u>4. Targets</u>
 
 ## <u>5. Outlets</u>
