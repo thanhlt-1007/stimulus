@@ -461,6 +461,79 @@ You can append `@window` or `@document` to the event name (along with any filter
 </div>
 ```
 
+#### ii. Options
+
+You can append one or more action options to an action descriptor if you need to specify [DOM event listener options](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#parameters).
+
+```HTML
+<div data-controller="gallery"
+     data-action="scroll->gallery#layout:!passive">
+  <img data-action="click->gallery#open:capture">
+</div>
+```
+
+Stimulus supports the following action options:
+
+| Action options | DOM event listener option |
+|----------------|---------------------------|
+| :capture       | { capture: true }         |
+| :once          | { once: true }            |
+| :passive       | { passive: true }         |
+| :!passive      | { passive: false }        |
+
+On top of that, Stimulus also supports the following action options which are not natively supported by the DOM event listener options:
+
+| Custom action option | Description                                                          |
+|----------------------|----------------------------------------------------------------------|
+| :stop                | calls `.stopProgagation()` on the event before invoking the method   |
+| :prevent             | calls `.preventDefault()` on the event before invoking the method    |
+| :self                | only invokes the method if the event was fired by the element itself |
+
+You can register your own action options with the `Application.registerActionOption` method.
+
+For example, consider that a `<details>` element will dispatch a toggle event whenever it's toggled. A custom `:open` action option would help to route events whenever the element is toggled open:
+
+```JS
+import { Application } from "@hotwired/stimulus"
+
+const application = Application.start()
+
+application.registerActionOption("open", ({ event }) => {
+  if (event.type == "toggle") {
+    return event.target.open == true
+  } else {
+    return true
+  }
+})
+```
+
+Similarly, a custom `:!open` action option could route events whenever the element is toffled closed. Declaring the action descriptor option with a `!` prefix will yield a `value` argument set to `false` in the callback:
+
+```JS
+import { Application } from "@hotwired/stimulus"
+
+const application = Application.start()
+
+application.registerActionOption("open", ({ event, value}) => {
+  if (event.type == "toggle") {
+    return event.target.open == value
+  } else {
+    return true
+  }
+})
+```
+
+In order to prevent the event from being routed to the controller action, the `registerActionOption` callback function must return `false`. Otherwise, to routes the event to the controller action, return `true`.
+
+The callback accepts a single object argument with the following keys:
+
+| Name    | Description                                                                                |
+|---------|--------------------------------------------------------------------------------------------|
+| name    | String: The option's name (`"open"` in the example above)                                  |
+| value   | Boolean: The value of the option(`:open` would yield `true`, `:!open` would yield `false`) |
+| event   | `Event`: The event instance                                                                |
+| element | `Element`: The element where the action descriptor is declared                             |
+
 ## <u>4. Targets</u>
 
 ## <u>5. Outlets</u>
