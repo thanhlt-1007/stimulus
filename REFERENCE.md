@@ -449,6 +449,18 @@ The list of supported modifier keys is shown below.
 | meta     | Command key on MacOS |
 | shift    |                      |
 
+#### i. Global Events
+
+Sometimes a controller needs to listen for events dispatched on the global `window` or `document` objects.
+
+You can append `@window` or `@document` to the event name (along with any filter modifer) in an action descriptor to install the event listener on `window` or `document`, respectively, as in the following example:
+
+```HTML
+<div data-controller="gallery"
+     data-action="resize@window->gallery#resize">
+</div>
+```
+
 ## <u>4. Targets</u>
 
 ## <u>5. Outlets</u>
