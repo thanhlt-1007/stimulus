@@ -568,6 +568,27 @@ The following evet methods give you more control over how events are handled:
 | event.preventDefault()  | Cancels the event's defaulr behavior (e.g. following a link or submitting a form) |
 | event.stopPropagation() | Stops the event before it bubbles up to other listeners on parent elements        |
 
+### d. Multiple Actions
+
+The `data-action` attribute's value is a space-separated list of action descriptors.
+
+It's common for any given element to have many actions. For example, the following input element calls a `field` controller's `highlight()` method when it gains focus, and a `search` controller's `update()` method every time the element's value changes:
+
+```HTML
+<input type="text" data-action="focus->field#highlight input->search#update">
+```
+
+When an element has more than one action for the same event, Stimulus invokes the actions from left to right in the order that their descriptors appear.
+
+The action chain can be stopped at any point by calling `Event#stopImmediatePropagation()` within an action. Any addtional actions to the right will be ignored:
+
+```JS
+highlight: function(event) {
+  event.stopImmediatePropagation()
+  // ..
+}
+```
+
 ## <u>4. Targets</u>
 
 ## <u>5. Outlets</u>
