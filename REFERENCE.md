@@ -390,6 +390,65 @@ The full set of these shorthand pairs is as follows:
 | select            | change        |
 | textarea          | input         |
 
+### b. KeyboardEvent Filter
+
+There may be cases where [KeyboardEvent](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent) Actions should only call the Controller method when certain keystrokes are used.
+
+You can install an event listener that responds only to the `Escape` by adding `.esc` to the event name of the action descriptor, as in the following example.
+
+```JS
+<div data-controller="model"
+  data-action="keydown.esc->modal#close" tabindex="0">
+</div>
+```
+
+This will only work if the event being fierd is a keyboard event.
+
+The correspondence between these filter and keys is shown below.
+
+| Filter | Key Name   |
+|--------|------------|
+| enter  | Enter      |
+| tab    | Tab        |
+| esc    | Escape     |
+| space  | ""         |
+| up     | ArrowUp    |
+| down   | ArrowDown  |
+| left   | ArrowLeft  |
+| right  | ArrowRight |
+| home   | Home       |
+| end    | End        |
+| [a-z]  | [a-z]      |
+| [0-9]  | [0-9]      |
+
+If you need to support other keys, you can customize the modifiers using a custom schema.
+
+```JS
+import { Application, defaultSchema } from "@hotwired/stimulus"
+
+const customScheme = {
+  ...defaultSchema,
+  keyMappings: { ...defaultSchema.keyMappings, at: "@" },
+}
+
+const app = Application.start(document.documentElement, customSchema)
+```
+
+If you want to subscribe to a compound filter using a modifier key, you can write it like `ctrl + a`.
+
+```HTML
+<div data-action="keydown.ctrl+a->listbox#selectAll" role="option" tabindex="0">...</div>
+```
+
+The list of supported modifier keys is shown below.
+
+| Modifier | Notes                |
+|----------|----------------------|
+| alt      | options for MacOS    |
+| ctrl     |                      |
+| meta     | Command key on MacOS |
+| shift    |                      |
+
 ## <u>4. Targets</u>
 
 ## <u>5. Outlets</u>
