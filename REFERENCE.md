@@ -703,6 +703,18 @@ export default class extends Controller {
 }
 ```
 
+### c. Properties
+
+For each target name defined in the `static targets` array, Stimulus adds the following properties to your controller, where `[name]` corresponds to the target's name:
+
+| Kind        | Name                   | Value                                                            |
+|-------------|------------------------|------------------------------------------------------------------|
+| Singular    | `this.[name]Target`    | The first matching target in scope                               |
+| Plural      | `this.[name]Targets`   | An array of all matching targets in scope                        |
+| Existential | `this.has[name]Target` | A boolean indicating whether there is a matching target in scope |
+
+Note: Accessing the singular target property will throw an error when there is no matching element.
+
 ## <u>5. Outlets</u>
 
 ## <u>6. Values</u>
