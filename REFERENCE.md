@@ -887,6 +887,28 @@ this.resultOutletElement.getAttribute("id")
 this.resultOutletElements.map(result => result.hasAttribute("selected"))
 ```
 
+### e. Outlet Callbacks
+
+Outlet callbacks are specially named functions called by Stimulus to let you respond to whenever an outlet is added or removed from the page.
+
+To observe outlet changes, define a function named `[name]OutletConnected()` or `[name]OutletDisconnected()`.
+
+```JS
+// search_controller.js
+
+export default class extends Controller {
+  static outlets = ["result"]
+
+  resultOutletConnected(outlet, element) {
+    // ...
+  }
+
+  resultOutletDisconnected(outlet, element) {
+    // ...
+  }
+}
+```
+
 ## <u>6. Values</u>
 
 ## <u>7. CSS Classes</u>
