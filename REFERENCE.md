@@ -786,6 +786,27 @@ export default class extends Controller {
 
 ## <u>5. Outlets</u>
 
+Outlets let you reference Stimulus controller instances and their controller element from within another Stimulus Controller by using CSS selectors.
+
+The use of Outlets helps with cross-controller communication and coordination as an alternative to dispatching custom events on controller elements.
+
+They are conceptually similar to [Stimulus Targets](https://stimulus.hotwired.dev/reference/targets) but with the difference that they reference a Stimulus controller instance plus its associated controller element.
+
+```HTML
+<div data-controller="search" data-search-result-outlet=".result">
+  ...
+<div>
+
+...
+
+<div id="results">
+  <div class="result" data-controller="results">...</div>
+  <div class="result" data-controller="results">...</div>
+</div>
+```
+
+While a target is a specifically marked element within the scope of its own controller element, an outlet can be located anywhere on the page and doesn't necessarily have to be within the controller scope.
+
 ## <u>6. Values</u>
 
 ## <u>7. CSS Classes</u>
