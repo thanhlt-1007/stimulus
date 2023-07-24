@@ -769,6 +769,21 @@ export default class extends Controller {
 
 Note During the execution of `[name]TargetConnected` and `[name]TargetDisconnected` callbacks, the `MutationObserver` instances behind the scenes are paused. This means that if a callback add or removes a target with a matching name, the corresponding callback will not be invoked again.
 
+### g. Naming Conventions
+
+Always use camelCase to specify target names, since they map directly to properties on your controller:
+
+```HTML
+<span data-search-target="camelCase" />
+<span data-search-target="do-not-do-this" />
+```
+
+```JS
+export default class extends Controller {
+  static targets = ["camelCase"]
+}
+```
+
 ## <u>5. Outlets</u>
 
 ## <u>6. Values</u>
