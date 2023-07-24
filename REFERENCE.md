@@ -715,6 +715,22 @@ For each target name defined in the `static targets` array, Stimulus adds the fo
 
 Note: Accessing the singular target property will throw an error when there is no matching element.
 
+### d. Shared Targets
+
+Elements can have more than one target attribute, and it's common for targets to be shared by multiple controllers.
+
+```HTML
+<form data-controller="search checkbox">
+  <input type="checkbox" data-search-target="projects" data-checkbox-target="input">
+  <input type="checkbox" data-search-target="messages" data-checkbox-target="input">
+  ...
+</form>
+```
+
+In the example above, the checkboxes are accessible inside the `search` controllers as `this.projectsTarget` and `this.messageTarget`, respectively.
+
+Inside the `checkbox` controller, `this.inputTargets` returns an array with both checkboxes.
+
 ## <u>5. Outlets</u>
 
 ## <u>6. Values</u>
