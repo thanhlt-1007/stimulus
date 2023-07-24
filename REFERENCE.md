@@ -669,6 +669,16 @@ update({ params: { id, url} }) {
 
 ## <u>4. Targets</u>
 
+Targets let you reference important elements by name
+
+```HTML
+<div data-controller="search">
+  <input type="text" data-search-target="query">
+  <div data-search-target="errorMessage"></div>
+  <div data-search-target="results"></div>
+</div>
+```
+
 ## <u>5. Outlets</u>
 
 ## <u>6. Values</u>
