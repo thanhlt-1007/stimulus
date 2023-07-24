@@ -1007,7 +1007,7 @@ Stimulus automatically generates getter, setter, and existential properties for 
 | Setter      | `this.[name]Value =`  | Writes `data-[identifier]-[name]-value`    |
 | Existential | `this.has[Name]Value` | Tests for `data-[identifier]-[name]-value` |
 
-### i. Getters
+#### i. Getters
 
 The getter for a value decodes the associated data attribute into an instance of the value's type.
 
@@ -1021,15 +1021,34 @@ If the data attribute is missing from the controller's element, the getter retur
 | Object  | `{}`          |
 | String  | `""`          |
 
-### ii. Setters
+#### ii. Setters
 
 The setter for a value sets the associated data attribute on the controller's element.
 
 To remove the data attribute from the controller's element, assign `undefined` to the value.
 
-### iii. Existential Properties
+#### iii. Existential Properties
 
 The existential property for a value evaluates to `true` when the associated data attribute is present on the controller's element and `false` when it is absent.
+
+### d. Change Callbacks
+
+Value change callbacks let you respond whenever a value's data attribute changes.
+
+Define a method `[name]ValueChanged` in the controller, where `[name]` is the name of the value you want to observe for changes. The method receives its decoded value as the first argument and the decoded previous value as the second argument.
+
+Stimulus invokes each change callback after the controller is initialized and again any time its associated data attribute changes. This includes changes as a result of assignment to the value's setter.
+
+```JS
+export default class extends Controller {
+  static values = { url: String }
+
+  urlValueChanged() {
+    fetch(this.urlValue)
+      .then(/* ... */)
+  }
+}
+```
 
 ## <u>7. CSS Classes</u>
 
