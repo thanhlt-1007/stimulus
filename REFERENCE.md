@@ -1027,6 +1027,10 @@ The setter for a value sets the associated data attribute on the controller's el
 
 To remove the data attribute from the controller's element, assign `undefined` to the value.
 
+### iii. Existential Properties
+
+The existential property for a value evaluates to `true` when the associated data attribute is present on the controller's element and `false` when it is absent.
+
 ## <u>7. CSS Classes</u>
 
 ## <u>8. Using Typescript</u>
