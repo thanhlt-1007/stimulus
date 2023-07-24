@@ -917,6 +917,16 @@ When you access an Outlet property in a Controller, you assert that at least one
 Missing outlet element "result" for "search" controller
 ```
 
+#### ii. Optional outlets
+
+If an outlet is optional or you want to assert that at least Outlet is present, you must first check the presence of the Outlet using the existential property:
+
+```JS
+if (this.hasResultOutlet) {
+  this.resultOutlet.safelyCallSomethingOnTheOutlet()
+}
+```
+
 ## <u>6. Values</u>
 
 ## <u>7. CSS Classes</u>
