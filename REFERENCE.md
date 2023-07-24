@@ -909,6 +909,14 @@ export default class extends Controller {
 }
 ```
 
+#### i. Outlets are Assumed to be Present
+
+When you access an Outlet property in a Controller, you assert that at least one corresponding Outlet is present. If the declaration is missing and no matching outlet is found Stimulus will throw an exception:
+
+```JS
+Missing outlet element "result" for "search" controller
+```
+
 ## <u>6. Values</u>
 
 ## <u>7. CSS Classes</u>
