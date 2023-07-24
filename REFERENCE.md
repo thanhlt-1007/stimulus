@@ -835,6 +835,18 @@ export default class extends Controller {
 }
 ```
 
+### c. Properties
+
+For each outlet defined in the `static outlets` array, Stimulus adds five properties to your controller, where `[name]` corresponds to the outlet's controller identifier:
+
+| Kind        | Property name          | Return Type         | Effect                                                                                                   |
+|-------------|------------------------|---------------------|----------------------------------------------------------------------------------------------------------|
+| Existential | `has[Name]Outlet`      | `Boolean`           | Tests for presence of a `[name]` outlet                                                                  |
+| Singular    | `[name]Outlet`         | `Controller`        | Returns the `Controller` instance of the first `[name]` outlet or throws an exception if none is present |
+| Plural      | `[name]Outlets`        | `Array<Controller>` | Returns the `Controller` instances of all `[name]` outlets                                               |
+| Singular    | `[name]OutletElement`  | `Element`           | Returns the Controller `Element` of the first `[name]` outlet or throws an exception if none is present  |
+| Plural      | `[name]OutletElements` | `Array<Element>`    | Returns the Controller `Element`'s of all `[name]` outlets                                               |
+
 ## <u>6. Values</u>
 
 ## <u>7. CSS Classes</u>
