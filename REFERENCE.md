@@ -945,6 +945,30 @@ Missing "data-controller=result" attribute on outlet element for "search" contro
 
 ## <u>6. Values</u>
 
+You can read an write [HTML data attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*) on controller elements as typed values using special controller properties.
+
+```HTML
+<div data-controller="loader"
+     data-loader-url-value="/messages">
+</div>
+```
+
+```JS
+// controllers/loader_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  static values = {
+    url: String
+  }
+
+  connect() {
+    fetch(this.urlValue)
+      .then(/* ... */)
+  }
+}
+```
+
 ## <u>7. CSS Classes</u>
 
 ## <u>8. Using Typescript</u>
