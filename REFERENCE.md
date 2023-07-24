@@ -1082,6 +1082,10 @@ export default class extends Controller {
 
 When a default is used, the expanded form of `{ type, default }` is used. This form can be mixed with the regular form that does not use a default.
 
+### f. Naming Conventions
+
+Write value names as camelCase in JavaScript and kebab-case in HTML. For example, avalue named `contentType` in `loader` controller will have the associated data attribute `data-loader-content-type-value`.
+
 ## <u>7. CSS Classes</u>
 
 ## <u>8. Using Typescript</u>
