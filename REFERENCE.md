@@ -997,6 +997,16 @@ A value's type is one of `Array`, `Boolean`, `Number`, `Object`, or `String`. Th
 | Object  | `JSON.stringify(object)` | `JSON.parse(value)`                   |
 | String  | Itself                   | Itself                                |
 
+### c. Properties and Attributes
+
+Stimulus automatically generates getter, setter, and existential properties for each value defined in a controller. These properties are linked to data attributes on the controller's element:
+
+| Kind        | Property name         | Effect                                     |
+|-------------|-----------------------|--------------------------------------------|
+| Getter      | `this.[name]Value`    | Reads `data-[identifier]-[name]-value`     |
+| Setter      | `this.[name]Value =`  | Writes `data-[identifier]-[name]-value`    |
+| Existential | `this.has[Name]Value` | Tests for `data-[identifier]-[name]-value` |
+
 ## <u>7. CSS Classes</u>
 
 ## <u>8. Using Typescript</u>
