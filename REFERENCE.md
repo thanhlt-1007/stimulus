@@ -927,6 +927,22 @@ if (this.hasResultOutlet) {
 }
 ```
 
+#### iii. Referencing Non-Controller Elements
+
+Stimulus will throw an exception if you try to declare an element as an outlet which doesn't have a corresponding `data-controller` and identifier on it:
+
+```HTML
+<div data-controller="search" data-search-result-outlet="#result"></div>
+
+<div id="result">></div>
+```
+
+Would result in:
+
+```JS
+Missing "data-controller=result" attribute on outlet element for "search" controller
+```
+
 ## <u>6. Values</u>
 
 ## <u>7. CSS Classes</u>
