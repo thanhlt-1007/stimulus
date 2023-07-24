@@ -819,6 +819,22 @@ data-[identifier]-[outlet]-outlet="[selector]"
 <div data-controller="search" data-search-result-outlet=".result"></div>
 ```
 
+### b. Definitions
+
+Define controller identifiers in your controller class using the `static outlets` array. This array declares which other controller identifiers can be used as outlets on this controller:
+
+```JS
+// search_controller.js
+
+export default class extends Controller {
+  static outlets = ["result"]
+
+  connect() {
+    this.resultOutlets.forEach(result => ...)
+  }
+}
+```
+
 ## <u>6. Values</u>
 
 ## <u>7. CSS Classes</u>
