@@ -807,6 +807,18 @@ They are conceptually similar to [Stimulus Targets](https://stimulus.hotwired.de
 
 While a target is a specifically marked element within the scope of its own controller element, an outlet can be located anywhere on the page and doesn't necessarily have to be within the controller scope.
 
+### a. Attributes and Names
+
+The `data-search-result-outlet` attribute is called an outlet attribute, and its value is a [CSS selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) which you can use to refer to other controller elements which should be available as outlets on the host controller.
+
+```JS
+data-[identifier]-[outlet]-outlet="[selector]"
+```
+
+```HTML
+<div data-controller="search" data-search-result-outlet=".result"></div>
+```
+
 ## <u>6. Values</u>
 
 ## <u>7. CSS Classes</u>
