@@ -679,6 +679,16 @@ Targets let you reference important elements by name
 </div>
 ```
 
+### a. Attributes and Names
+
+The `data-search-target` attribute is called a target attribute, and its value is a space-separated list of target names which you can use to refer to the element in the `search` controller.
+
+```HTML
+<div data-controller="search">
+  <div data-search-target="results"></div>
+</div>
+```
+
 ## <u>5. Outlets</u>
 
 ## <u>6. Values</u>
