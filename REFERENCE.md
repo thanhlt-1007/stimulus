@@ -1021,6 +1021,12 @@ If the data attribute is missing from the controller's element, the getter retur
 | Object  | `{}`          |
 | String  | `""`          |
 
+### ii. Setters
+
+The setter for a value sets the associated data attribute on the controller's element.
+
+To remove the data attribute from the controller's element, assign `undefined` to the value.
+
 ## <u>7. CSS Classes</u>
 
 ## <u>8. Using Typescript</u>
