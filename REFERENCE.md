@@ -589,6 +589,24 @@ highlight: function(event) {
 }
 ```
 
+### e. Naming Conventions
+
+Always use camelCase to specify action names, since they map directly to methods on your controller.
+
+Avoid action names that simply repeat the event's name, such as `click`, `onClick`, or `handleClick`:
+
+```HTML
+<button data-action="profile#click">Don't</button>
+```
+
+Instead, name your action methods based on what will happen when they're called:
+
+```HTML
+<button data-action="click->profile#showDialog">Do</button>
+```
+
+This will help you reason about the behavior of a block of HTML without having to look at the controller source.
+
 ## <u>4. Targets</u>
 
 ## <u>5. Outlets</u>
