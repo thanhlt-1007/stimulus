@@ -689,6 +689,20 @@ The `data-search-target` attribute is called a target attribute, and its value i
 </div>
 ```
 
+### b. Definitions
+
+Define target names in your controller class using the `static targets` array:
+
+```JS
+// controllers/search_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  static targets = ["query", "errorMessage", "results"]
+  // ...
+}
+```
+
 ## <u>5. Outlets</u>
 
 ## <u>6. Values</u>
