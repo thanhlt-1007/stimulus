@@ -1050,6 +1050,22 @@ export default class extends Controller {
 }
 ```
 
+#### i. Previous Values
+
+You can access the previous value of a `[name]ValueChanged` callback by defining the callback method with two arguments in your controller.
+
+```JS
+export default class extends Controller {
+  static values = { url: String }
+
+  urlValueChanged(value, previousValue) {
+    /* ... */
+  }
+}
+```
+
+The two arguments can be named as you like. You could also use `urlValueChanged(current, old)`.
+
 ## <u>7. CSS Classes</u>
 
 ## <u>8. Using Typescript</u>
