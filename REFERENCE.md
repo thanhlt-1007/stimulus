@@ -607,6 +607,66 @@ Instead, name your action methods based on what will happen when they're called:
 
 This will help you reason about the behavior of a block of HTML without having to look at the controller source.
 
+### f. Action Parameters
+
+Actions can have parameters that are be passed from the submitter element. They follow the format of `data-[identifier]-[param-name]-param`. Parameters must be specified on the same element as the action they intend to be passed to is declared.
+
+All parameters are automatically typecast to either a `Number`, `String`, `Object`, or `Boolean`, inferred by their value:
+
+| Data attribute                                   | Param              | Type    |
+|--------------------------------------------------|--------------------|---------|
+| `data-item-id-params="12345"`                    | `12345`            | Number  |
+| `data-item-url-param="/votes"`                   | `"/votes"`         | String  |
+| `data-item-payload-param='{"value": "1234567"}'` | `{value: 1234567}` | Object  |
+| `data-item-active-param="true"`                  | `true`             | Boolean |
+
+Consider this setup:
+
+```HTML
+<div data-controller="item spinner">
+  <button data-action="item#upbote spinner#start"
+    data-item-id-param="12345"
+    data-item-url-param="/votes"
+    data-item-payload-param='{"value": "1234567"}'
+    data-item-active-param="true">...</button>
+  </button>
+</div>
+```
+
+It will call both `ItemController#upvote` and `SpinnerController#start`, but only the former will have any parameters passed to it:
+
+```JS
+// ItemController
+upvote(event) {
+  // { id: 12345, url: "/votes", active: true, payload: { value: 1234567 } }
+  console.log(event.params)
+}
+
+// SpinnerController
+start(event) {
+  // {}
+  console.log(event.params)
+}
+```
+
+If we don't need anything else from the event, we can destruct the params
+
+```JS
+upvote({ params }) {
+  // { id: 12345, url: "/votes", active: true, payload: { value: 1234567 } }
+  console.log(params)
+}
+```
+
+Or destruct only the params we need, in case multiple actions on the same controller share the same submitter element:
+
+```JS
+update({ params: { id, url} }) {
+  console.log(id) // 12345
+  console.log(url) // "/votes"
+}
+```
+
 ## <u>4. Targets</u>
 
 ## <u>5. Outlets</u>
