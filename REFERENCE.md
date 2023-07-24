@@ -969,6 +969,22 @@ export default class extends Controller {
 }
 ```
 
+### a. Definitions
+
+Define values in a controller using the `static values` object. Put each value's name on the left and its type on the right.
+
+```JS
+export default class extends Controller {
+  static values = {
+    url: String,
+    interval: Number,
+    params: Object
+  }
+
+  // ...
+}
+```
+
 ## <u>7. CSS Classes</u>
 
 ## <u>8. Using Typescript</u>
