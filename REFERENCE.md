@@ -1007,6 +1007,20 @@ Stimulus automatically generates getter, setter, and existential properties for 
 | Setter      | `this.[name]Value =`  | Writes `data-[identifier]-[name]-value`    |
 | Existential | `this.has[Name]Value` | Tests for `data-[identifier]-[name]-value` |
 
+### i. Getters
+
+The getter for a value decodes the associated data attribute into an instance of the value's type.
+
+If the data attribute is missing from the controller's element, the getter returns a default value, depending on the value's type:
+
+| Type    | Default value |
+|---------|---------------|
+| Array   | `[]`          |
+| Boolean | `false`       |
+| Number  | `0`           |
+| Object  | `{}`          |
+| String  | `""`          |
+
 ## <u>7. CSS Classes</u>
 
 ## <u>8. Using Typescript</u>
