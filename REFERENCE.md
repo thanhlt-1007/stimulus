@@ -847,6 +847,46 @@ For each outlet defined in the `static outlets` array, Stimulus adds five proper
 | Singular    | `[name]OutletElement`  | `Element`           | Returns the Controller `Element` of the first `[name]` outlet or throws an exception if none is present  |
 | Plural      | `[name]OutletElements` | `Array<Element>`    | Returns the Controller `Element`'s of all `[name]` outlets                                               |
 
+### d. Accessing Controllers and Elements
+
+Since you get back a `Controller` instance from the `[name]Outlet` and `[name]Outlets` properties you are also able to access the Values, Classes, Targets and all of the other properties and functions that controller instance defines:
+
+```JS
+this.resultOutlet.idValue
+this.resultOutlet.imageTarget
+this.resultOutlet.activeClasses
+```
+
+You are also able to invoke any function the outlet controller may define:
+
+```JS
+// result_controller.js
+
+export default class extends Controller {
+  markAsSelected(event) {
+    // ...
+  }
+}
+
+// search_controller.js
+
+export default class extends Controller {
+  static outlets = ["result"]
+
+  selectAll(event) {
+    this.resultOutlets.forEach(result => result.markAsSelected(event))
+  }
+}
+```
+
+Similarly with the Outlet Element, it allows you to call any function or property on [Element](https://developer.mozilla.org/en-US/docs/Web/API/Element):
+
+```JS
+this.resultOutletElement.dataset.value
+this.resultOutletElement.getAttribute("id")
+this.resultOutletElements.map(result => result.hasAttribute("selected"))
+```
+
 ## <u>6. Values</u>
 
 ## <u>7. CSS Classes</u>
