@@ -731,6 +731,16 @@ In the example above, the checkboxes are accessible inside the `search` controll
 
 Inside the `checkbox` controller, `this.inputTargets` returns an array with both checkboxes.
 
+### e. Optional Targets
+
+If your controller needs to work with a target which may or may not be present, condition your code based on the value of the existential target property:
+
+```JS
+if (this.hasResultsTarget) {
+  this.resultsTarget.innerHTML = "..."
+}
+```
+
 ## <u>5. Outlets</u>
 
 ## <u>6. Values</u>
