@@ -1088,4 +1088,20 @@ Write value names as camelCase in JavaScript and kebab-case in HTML. For example
 
 ## <u>7. CSS Classes</u>
 
+In HTML, a CSS class defines a set of styles which can be applied to element using the `class` attribute.
+
+CSS classes are a convenient tool for changing styles and playing animations programmatically. For example, a Stimulus controller might add a "loading" class to an element when it is performing an operation in the background, and then style that class in CSS to display a progress indicator.
+
+```HTML
+<form data-controller="search" class="search--busy">
+```
+
+```CSS
+.search--busy {
+  background-image: url(throbber.svg) no-repeat;
+}
+```
+
+As an alternative to hard-coding classes with JavaScript strings, Stimulus lets you refer to CSS classes by logical name using a combination of data attributes and controller properties.
+
 ## <u>8. Using Typescript</u>
