@@ -1117,4 +1117,28 @@ export default class extends Controller {
 }
 ```
 
+### b. Attributes
+
+The logical names defined in the controller's `static classes` array map to CSS class attributes on the controller's element.
+
+```HTML
+<form data-controller="search"
+      data-search-loading-class="search--busy">
+  <input data-action="search#loadResults">
+</form>
+```
+
+Construct a CSS class attribute by joining together the controller identifier and logical name in the format `data-[identifier]-[logical-name]-class`. The attribute's value can be a single CSS class name or a list of multiple class names.
+
+Note: CSS class attributes must be specified on the same element as the `data-controller` attribute.
+
+If you want to specify multiple CSS classes for a logical name, separate the classes with the spaces:
+
+```HTML
+<form data-controller="search"
+      data-search-loading-class="bg-gray-500 animate-spinner cursor-busy">
+  <input data-action="search#loadResults">
+</form>
+```
+
 ## <u>8. Using Typescript</u>
