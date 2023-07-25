@@ -1141,4 +1141,30 @@ If you want to specify multiple CSS classes for a logical name, separate the cla
 </form>
 ```
 
+### c. Properties
+
+For each logical name defined in the `static classes` array, Stimulus adds the following CSS class properties to your controller:
+
+| Kind        | Name                         | Value                                                                             |
+|-------------|------------------------------|-----------------------------------------------------------------------------------|
+| Singular    | `this.[logicalName]Class`    | The value of the CSS class attribute corresponding to `localName`                 |
+| Plural      | `this.[logicalName]Classes`  | An array of all classes in the corresponding CSS class attribute, split by spaces |
+| Existential | `this.has[LogicalName]Class` | A boolean indicating whether or not the CSS class attribute is present            |
+
+Use these properties to apply CSS classes to element with the `add()` and `remove()` methods of the [DOM classList API](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList)
+
+For example, to display a loading indicator on the `search` controller's element before fetching results, you might implement the `loadResult` action like so:
+
+```JS
+export default class extends Controller {
+  static classes = ["loading"]
+
+  loadResults() {
+    this.element.classList.add(this.loadingClass)
+
+    fetch(/* ... */)
+  }
+}
+```
+
 ## <u>8. Using Typescript</u>
