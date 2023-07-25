@@ -1104,4 +1104,17 @@ CSS classes are a convenient tool for changing styles and playing animations pro
 
 As an alternative to hard-coding classes with JavaScript strings, Stimulus lets you refer to CSS classes by logical name using a combination of data attributes and controller properties.
 
+### a. Definitions
+
+Define CSS classes by logical name in your controller using the `static classes` array:
+
+```JS
+// controller/search_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  static classes = ["loading"] // ...
+}
+```
+
 ## <u>8. Using Typescript</u>
