@@ -1185,4 +1185,32 @@ export default class extends Controller {
 
 Note: Stimulus will throw an error if you attempt to access a CSS class property when a matching CSS class attribute is not present.
 
+### d. Naming Conventions
+
+Use camelCase to specify logical names in CSS class definitions. Logical names map to camelCase CSS class properties:
+
+```JS
+export default class extends Controller {
+  static classes = ["loading", "noResults"]
+
+  loadResults() {
+    // ...
+    if (results.length == 0) {
+      this.element.classList.add(this.noResultsClass)
+    }
+  }
+}
+```
+
+In HTML, write CSS class attributes in kebab-case:
+
+```HTML
+<form data-controller="search"
+      data-search-loading-class="search--busy"
+      data-search-no-results-class="search--empty">
+</form>
+```
+
+When constructing CSS class attributes, follow the conventions for identifiers as described in [Controllers Naming Conventions](https://stimulus.hotwired.dev/reference/controllers#naming-conventions)
+
 ## <u>8. Using Typescript</u>
